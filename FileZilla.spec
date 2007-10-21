@@ -13,6 +13,7 @@ Group:		X11/Applications/Networking
 Source0:	http://downloads.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
 # Source0-md5:	0182908d3091d19edc511b3a2a6b3e08
 Patch0:		%{name}-desktop.patch
+Patch1:		%{name}-locales.patch
 URL:		http://filezilla-project.org/
 BuildRequires:	wxGTK2-unicode-devel >= 2.8.4
 BuildRequires:	wxWidgets-devel >= 2.8.4
@@ -30,6 +31,8 @@ opcjami oraz intuicyjnym interfejsem.
 %prep
 %setup -q -n filezilla-%{version}
 %patch0 -p1
+%patch1 -p1
+
 cd locales
 mv ca{_ES,}.po
 mv et{_EE,}.po
