@@ -1,3 +1,5 @@
+# TODO:
+# - merge with old filezilla.spec
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -7,7 +9,7 @@ Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
 Version:	3.0.2.1
-Release:	0.2
+Release:	0.3
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://downloads.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
@@ -15,6 +17,7 @@ Source0:	http://downloads.sourceforge.net/filezilla/%{name}_%{version}_src.tar.b
 URL:		http://filezilla-project.org/
 BuildRequires:	wxGTK2-unicode-devel >= 2.8.4
 BuildRequires:	wxWidgets-devel >= 2.8.4
+BuildRequires:	wxWidgets-utils >= 2.8.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
