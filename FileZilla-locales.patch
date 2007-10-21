@@ -1,0 +1,79 @@
+--- ./src/interface/FileZilla.cpp.org	2007-10-17 20:22:26.000000000 +0200
++++ ./src/interface/FileZilla.cpp	2007-10-21 21:09:28.312100761 +0200
+@@ -509,25 +509,7 @@ bool CFileZillaApp::InitSettingsDir()
+ 
+ bool CFileZillaApp::LoadLocales()
+ {
+-	m_localesDir = GetDataDir(_T("/../locale/*/filezilla.mo"));
+-	if (m_localesDir != _T(""))
+-	{
+-		if (m_localesDir[m_localesDir.Length() - 1] != wxFileName::GetPathSeparator())
+-			m_localesDir += wxFileName::GetPathSeparator();
+-
+-		m_localesDir += _T("../locale");
+-	}
+-	else
+-	{
+-		m_localesDir = GetDataDir(_T("/locales/*/filezilla.mo"));
+-		if (m_localesDir != _T(""))
+-		{
+-			if (m_localesDir[m_localesDir.Length() - 1] != wxFileName::GetPathSeparator())
+-				m_localesDir += wxFileName::GetPathSeparator();
+-
+-			m_localesDir += _T("locales");
+-		}
+-	}
++	m_localesDir = _T("/usr/share/locale/");
+ 
+ 	if (m_localesDir != _T(""))
+ 	{
+--- ./src/interface/optionspage_language.cpp.org	2007-10-17 20:22:25.000000000 +0200
++++ ./src/interface/optionspage_language.cpp	2007-10-21 21:13:01.894158243 +0200
+@@ -33,7 +33,7 @@ bool COptionsPageLanguage::LoadPage()
+ 	wxString locale;
+ 	for (bool found = dir.GetFirst(&locale); found; found = dir.GetNext(&locale))
+ 	{
+-		if (!wxFileName::FileExists(localesDir + locale + _T("/filezilla.mo")))
++		if (!wxFileName::FileExists(localesDir + locale + _T("/LC_MESSAGES/filezilla.mo")))
+ 			continue;
+ 
+ 		wxString name;
+--- ./src/interface/wrapengine.cpp.org	2007-10-17 20:22:25.000000000 +0200
++++ ./src/interface/wrapengine.cpp	2007-10-21 21:14:14.681600817 +0200
+@@ -949,7 +949,7 @@ bool CWrapEngine::LoadCache()
+ 		wxString locale;
+ 		for (bool found = dir.GetFirst(&locale); found; found = dir.GetNext(&locale))
+ 		{
+-			if (!wxFileName::FileExists(localesDir + locale + _T("/filezilla.mo")))
++			if (!wxFileName::FileExists(localesDir + locale + _T("/LC_MESSAGES/filezilla.mo")))
+ 				continue;
+ 
+ 			wxString name;
+@@ -957,7 +957,7 @@ bool CWrapEngine::LoadCache()
+ 			if (!pInfo)
+ 				continue;
+ 
+-			wxFileName fn(localesDir + locale + _T("/filezilla.mo"));
++			wxFileName fn(localesDir + locale + _T("/LC_MESSAGES/filezilla.mo"));
+ 			wxDateTime date = fn.GetModificationTime();
+ 			wxLongLong ticks = date.GetTicks();
+ 
+--- ./locales/Makefile.am.org	2007-10-17 20:22:19.000000000 +0200
++++ ./locales/Makefile.am	2007-10-21 21:11:20.075076784 +0200
+@@ -7,13 +7,13 @@ install-data-local: install-filezilla-ca
+ 
+ install-filezilla-catalogs: allmo
+ 	for i in @FILEZILLA_LINGUAS@ ; do \
+-	  $(mkinstalldirs) $(DESTDIR)$(localedir)/$$i ; \
+-	  $(INSTALL_DATA) $$i.mo $(DESTDIR)$(localedir)/$$i/filezilla.mo ; \
++	  $(mkinstalldirs) $(DESTDIR)$(localedir)/$$i/LC_MESSAGES ; \
++	  $(INSTALL_DATA) $$i.mo $(DESTDIR)$(localedir)/$$i/LC_MESSAGES/filezilla.mo ; \
+ 	done
+ 
+ uninstall-local:
+ 	for i in @FILEZILLA_LINGUAS@ ; do \
+-	  rm $(DESTDIR)$(localedir)/$$i/filezilla.mo ; \
++	  rm $(DESTDIR)$(localedir)/$$i/LC_MESSAGES/filezilla.mo ; \
+ 	done
+ 
+ 
