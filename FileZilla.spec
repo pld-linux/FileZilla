@@ -7,19 +7,14 @@ Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
 Version:	3.0.2.1
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://downloads.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
 # Source0-md5:	0182908d3091d19edc511b3a2a6b3e08
 URL:		http://filezilla-project.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	gettext-devel
+BuildRequires:	wxGTK2-unicode-devel >= 2.8.4
 BuildRequires:	wxWidgets-devel >= 2.8.4
-#BuildRequires:	gtk+2-devel >= 1:2.0.0
-#BuildRequires:	openssl-devel >= 0.9.7d
-#BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -28,13 +23,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %setup -q -n filezilla-%{version}
 
 %build
-#rm -f aclocal.m4 acinclude.m4
-#%{__gettextize}
-#%{__aclocal}
-#%{__autoheader}
-#%{__autoconf}
-#%{__automake}
-%configure
+%configure \
+	--with-wx-config=wx-gtk2-unicode-config
 %{__make}
 
 %install
