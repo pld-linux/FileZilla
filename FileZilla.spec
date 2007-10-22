@@ -19,6 +19,7 @@ BuildRequires:	wxGTK2-unicode-devel >= 2.8.4
 BuildRequires:	wxWidgets-devel >= 2.8.4
 BuildRequires:	wxWidgets-utils >= 2.8.4
 Requires:	wxWidgets >= 2.8.4
+Obsoletes:	filezilla
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
