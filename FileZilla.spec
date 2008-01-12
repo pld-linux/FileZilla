@@ -1,6 +1,3 @@
-# TODO
-# - fix locales:
-#error: FileZilla-3.0.2.1-1: req /usr/share/locale/fr_CA not found
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
