@@ -1,8 +1,6 @@
 # TODO
 # - fix locales:
 #error: FileZilla-3.0.2.1-1: req /usr/share/locale/fr_CA not found
-#error: FileZilla-3.0.2.1-1: req /usr/share/locale/he_IL not found
-#error: FileZilla-3.0.2.1-1: req /usr/share/locale/ro_RO not found
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -46,6 +44,7 @@ mv ca{_ES,}.po
 mv et{_EE,}.po
 mv da{_DK,}.po
 mv fr{_FR,}.po
+mv he{_IL,}.po
 mv id{_ID,}.po
 mv it{_IT,}.po
 mv ja{_JP,}.po
@@ -53,6 +52,7 @@ mv ko{_KR,}.po
 mv nb{_NO,}.po
 mv pl{_PL,}.po
 mv pt{_PT,}.po
+mv ro{_RO,}.po
 mv sv{_SE,}.po
 
 %build
