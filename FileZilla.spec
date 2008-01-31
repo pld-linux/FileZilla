@@ -86,9 +86,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%define __debug_install_post   sh -x %(echo $HOME)/find-debuginfo.sh %{_builddir}/%{?buildsubdir}%{nil}
-
-sh ../../rpm-find-lang %{buildroot} filezilla
 %find_lang filezilla
 
 %clean
