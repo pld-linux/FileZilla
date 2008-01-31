@@ -1,3 +1,10 @@
+# TODO
+#	/usr/share/locale/ca_ES@valencia is needed by FileZilla-3.0.5.2-1.i686
+#	/usr/share/locale/cs_CZ is needed by FileZilla-3.0.5.2-1.i686
+#	/usr/share/locale/el_GR is needed by FileZilla-3.0.5.2-1.i686
+#	/usr/share/locale/eu_ES is needed by FileZilla-3.0.5.2-1.i686
+#	/usr/share/locale/gl_ES is needed by FileZilla-3.0.5.2-1.i686
+#	/usr/share/locale/km_KH is needed by FileZilla-3.0.5.2-1.i686
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -37,20 +44,36 @@ opcjami oraz intuicyjnym interfejsem.
 %patch1 -p1
 
 cd locales
+mv bg{_BG,}.po
 mv ca{_ES,}.po
-mv et{_EE,}.po
 mv da{_DK,}.po
+mv de{_DE,}.po
+mv es{_ES,}.po
+mv et{_EE,}.po
+mv fi{_FI,}.po
 mv fr{_FR,}.po
 mv he{_IL,}.po
+mv hu{_HU,}.po
 mv id{_ID,}.po
 mv it{_IT,}.po
 mv ja{_JP,}.po
 mv ko{_KR,}.po
+mv lt{_LT,}.po
+mv lv{_LV,}.po
+mv mk{_MK,}.po
 mv nb{_NO,}.po
+mv nl{_NL,}.po
 mv pl{_PL,}.po
 mv pt{_PT,}.po
 mv ro{_RO,}.po
+mv ru{_RU,}.po
+mv sk{_SK,}.po
+mv sl{_SI,}.po
 mv sv{_SE,}.po
+mv tr{_TR,}.po
+
+# more suspicious
+# ca_ES@valencia cs_CZ el_GR eu_ES gl_ES km_KH pt_BR zh_CN zh_TW
 
 %build
 %configure \
@@ -63,6 +86,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%define __debug_install_post   sh -x %(echo $HOME)/find-debuginfo.sh %{_builddir}/%{?buildsubdir}%{nil}
+
+sh ../../rpm-find-lang %{buildroot} filezilla
 %find_lang filezilla
 
 %clean
