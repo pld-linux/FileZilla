@@ -13,7 +13,7 @@ Version:	3.0.5.2
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://downloads.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
+Source0:	http://dl.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
 # Source0-md5:	9178cfdb2421f27e46be57eeff7b0f7c
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-locales.patch
