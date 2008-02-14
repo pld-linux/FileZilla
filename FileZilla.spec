@@ -9,12 +9,12 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.0.6
+Version:	3.0.7
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
-# Source0-md5:	02e0924a6a6038f8cf47230d98b578b6
+# Source0-md5:	18ed4c2f9ba6e724c38a51d9f283527b
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-locales.patch
 URL:		http://filezilla-project.org/
@@ -44,21 +44,15 @@ opcjami oraz intuicyjnym interfejsem.
 
 cd locales
 mv bg{_BG,}.po
-mv ca{_ES,}.po
 mv cs{_CZ,}.po
 mv da{_DK,}.po
-mv de{_DE,}.po
-mv el{_GR,}.po
-mv es{_ES,}.po
 mv et{_EE,}.po
 mv eu{_ES,}.po
 mv fi{_FI,}.po
-mv fr{_FR,}.po
 mv gl{_ES,}.po
 mv he{_IL,}.po
 mv hu{_HU,}.po
 mv id{_ID,}.po
-mv it{_IT,}.po
 mv ja{_JP,}.po
 mv km{_KH,}.po
 mv ko{_KR,}.po
@@ -66,15 +60,12 @@ mv lt{_LT,}.po
 mv lv{_LV,}.po
 mv mk{_MK,}.po
 mv nb{_NO,}.po
-mv nl{_NL,}.po
 mv pl{_PL,}.po
 mv pt{_PT,}.po
 mv ro{_RO,}.po
-mv ru{_RU,}.po
 mv sk{_SK,}.po
 mv sl{_SI,}.po
-mv sv{_SE,}.po
-mv tr{_TR,}.po
+mv th{_TH,}.po
 
 %build
 %{__libtoolize}
