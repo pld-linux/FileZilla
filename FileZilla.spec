@@ -43,6 +43,7 @@ opcjami oraz intuicyjnym interfejsem.
 %patch1 -p1
 
 cd locales
+rm -f ca@valencia.po
 mv bg{_BG,}.po
 mv cs{_CZ,}.po
 mv da{_DK,}.po
