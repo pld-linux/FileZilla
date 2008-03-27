@@ -1,6 +1,10 @@
 # TODO
 #	/usr/share/locale/ca_ES@valencia is needed by FileZilla-3.0.5.2-1.i686
 #	(there is probably ca_ES@valencia locale in Debian glibc - merge it)
+# - unpackaged:
+#   /usr/bin/fzputtygen
+#   /usr/share/filezilla/resources/blukis/theme.xml
+#   /usr/share/filezilla/resources/cyril/theme.xml
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -10,7 +14,7 @@ Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
 Version:	3.0.8.1
-Release:	1
+Release:	0.1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
@@ -19,6 +23,7 @@ Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-locales.patch
 URL:		http://filezilla-project.org/
 BuildRequires:	autoconf
+BuildRequires:	--TODO
 BuildRequires:	automake
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	wxGTK2-unicode-devel >= 2.8.6
