@@ -1,10 +1,8 @@
 # TODO
-#	/usr/share/locale/ca_ES@valencia is needed by FileZilla-3.0.5.2-1.i686
-#	(there is probably ca_ES@valencia locale in Debian glibc - merge it)
-# - unpackaged:
-#   /usr/bin/fzputtygen
-#   /usr/share/filezilla/resources/blukis/theme.xml
-#   /usr/share/filezilla/resources/cyril/theme.xml
+# - /usr/share/locale/ca_ES@valencia is needed by FileZilla-3.0.5.2-1.i686
+#   (there is probably ca_ES@valencia locale in Debian glibc - merge it)
+#   Temporary removed locale...
+# - removed directory for vi_VN locale.
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -13,17 +11,15 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.0.8.1
-Release:	1.1
+Version:	3.0.9.2
+Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
-# Source0-md5:	465de8637065886ad07048c97385a387
+# Source0-md5:	4f8b3d84a6f09c012c3693fa7eba52b5
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-locales.patch
 URL:		http://filezilla-project.org/
 BuildRequires:	autoconf
-BuildRequires:	--TODO
 BuildRequires:	automake
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	wxGTK2-unicode-devel >= 2.8.6
@@ -45,10 +41,8 @@ opcjami oraz intuicyjnym interfejsem.
 %prep
 %setup -q -n filezilla-%{version}
 %patch0 -p1
-%patch1 -p1
 
 cd locales
-rm -f ca@valencia.po
 mv bg{_BG,}.po
 mv cs{_CZ,}.po
 mv da{_DK,}.po
@@ -72,6 +66,8 @@ mv ro{_RO,}.po
 mv sk{_SK,}.po
 mv sl{_SI,}.po
 mv th{_TH,}.po
+# Temporary - FIXME:
+rm -f 	ca@valencia.po
 
 %build
 %{__libtoolize}
@@ -89,6 +85,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# Temporary - FIXME:
+rm -rf \
+	$RPM_BUILD_ROOT%{_datadir}/locale/ca_ES@valencia/ \
+	$RPM_BUILD_ROOT%{_datadir}/locale/vi_VN/
+
 %find_lang filezilla
 
 %clean
@@ -99,6 +100,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS NEWS README
 %attr(755,root,root) %{_bindir}/filezilla
 %attr(755,root,root) %{_bindir}/fzsftp
+%attr(755,root,root) %{_bindir}/fzputtygen
 %dir %{_datadir}/filezilla
 %dir %{_datadir}/filezilla/docs
 %{_datadir}/filezilla/docs/*
@@ -114,6 +116,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/filezilla/resources/48x48
 %{_datadir}/filezilla/resources/48x48/*.png
 %dir %{_datadir}/filezilla/resources/blukis
+%{_datadir}/filezilla/resources/blukis/theme.xml
 %dir %{_datadir}/filezilla/resources/blukis/16x16
 %{_datadir}/filezilla/resources/blukis/16x16/*.png
 %dir %{_datadir}/filezilla/resources/blukis/32x32
@@ -121,6 +124,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/filezilla/resources/blukis/48x48
 %{_datadir}/filezilla/resources/blukis/48x48/*.png
 %dir %{_datadir}/filezilla/resources/cyril
+%{_datadir}/filezilla/resources/cyril/theme.xml
 %dir %{_datadir}/filezilla/resources/cyril/16x16
 %{_datadir}/filezilla/resources/cyril/16x16/*.png
 %{_desktopdir}/*.desktop
