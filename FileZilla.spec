@@ -2,7 +2,6 @@
 # - /usr/share/locale/ca_ES@valencia is needed by FileZilla-3.0.5.2-1.i686
 #   (there is probably ca_ES@valencia locale in Debian glibc - merge it)
 #   Temporary removed locale...
-# - removed directory for vi_VN locale.
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -66,8 +65,9 @@ mv ro{_RO,}.po
 mv sk{_SK,}.po
 mv sl{_SI,}.po
 mv th{_TH,}.po
+mv vi{_VN,}.po
 # Temporary - FIXME:
-rm -f 	ca@valencia.po
+rm -f ca@valencia.po
 
 %build
 %{__libtoolize}
@@ -87,8 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # Temporary - FIXME:
 rm -rf \
-	$RPM_BUILD_ROOT%{_datadir}/locale/ca_ES@valencia/ \
-	$RPM_BUILD_ROOT%{_datadir}/locale/vi_VN/
+	$RPM_BUILD_ROOT%{_datadir}/locale/ca_ES@valencia
 
 %find_lang filezilla
 
