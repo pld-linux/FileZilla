@@ -10,12 +10,12 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.1.0.1
+Version:	3.1.1.1
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
-# Source0-md5:	45a28bac466bd8f2eb1a97dfeb3ea8b3
+# Source0-md5:	ba453a5007c38c68381814f42e4e834c
 Patch0:		%{name}-desktop.patch
 URL:		http://filezilla-project.org/
 BuildRequires:	autoconf
@@ -135,6 +135,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/filezilla/resources/lone/32x32/*.png
 %dir %{_datadir}/filezilla/resources/lone/48x48
 %{_datadir}/filezilla/resources/lone/48x48/*.png
+%dir %{_datadir}/filezilla/resources/opencrystal
+%{_datadir}/filezilla/resources/opencrystal/theme.xml
+%dir %{_datadir}/filezilla/resources/opencrystal/16x16
+%{_datadir}/filezilla/resources/opencrystal/16x16/*.png
+%dir %{_datadir}/filezilla/resources/opencrystal/32x32
+%{_datadir}/filezilla/resources/opencrystal/32x32/*.png
+%dir %{_datadir}/filezilla/resources/opencrystal/48x48
+%{_datadir}/filezilla/resources/opencrystal/48x48/*.png
 %{_iconsdir}/hicolor/*/apps/filezilla.png
 %{_desktopdir}/*.desktop
 %{_pixmapsdir}/*.png
