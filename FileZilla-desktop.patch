@@ -1,10 +1,10 @@
 --- ./data/filezilla.desktop.org	2007-10-17 20:22:29.000000000 +0200
 +++ ./data/filezilla.desktop	2007-10-21 20:52:03.524181129 +0200
 @@ -3,6 +3,7 @@ Name=FileZilla
- GenericName=FTP and SFTP client
- Comment=Download and upload files via ftp, sftp and ftps
- Comment[fr]=Transférer des fichiers via ftp, sftp et ftps
+ Comment=Download and upload files via FTP, FTPS and SFTP
+ Comment[de]=Dateien über FTP, FTPS und SFTP übertragen
+ Comment[fr]=Transférer des fichiers via FTP, FTPS et SFTP
 +Comment[pl]=FileZilla - klient ftp, sftp oraz ftps
  Exec=filezilla
  Terminal=false
- Icon=filezilla.png
+ Icon=filezilla
