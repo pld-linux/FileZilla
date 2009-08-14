@@ -10,18 +10,18 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.2.6.1
+Version:	3.2.7
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
-# Source0-md5:	1b3e9974f112ff0ff18ce5a8187c20f4
+# Source0-md5:	fcbcb291ec6f4dd821670a4498b5ad35
 Patch0:		%{name}-desktop.patch
 URL:		http://filezilla-project.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	dbus-devel
-BuildRequires:	gnutls-devel >= 2.0.4
+BuildRequires:	gnutls-devel >= 2.8.3
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	wxGTK2-unicode-devel >= 2.8.9
 BuildRequires:	wxWidgets-devel >= 2.8.9
