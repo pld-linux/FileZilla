@@ -20,6 +20,7 @@ Patch0:		%{name}-desktop.patch
 URL:		http://filezilla-project.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	cppunit-devel
 BuildRequires:	dbus-devel
 BuildRequires:	gettext-devel
 BuildRequires:	gnutls-devel >= 2.8.3
@@ -29,6 +30,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	wxGTK2-unicode-devel >= 2.8.9
 BuildRequires:	wxWidgets-devel >= 2.8.9
 BuildRequires:	wxWidgets-utils >= 2.8.9
+BuildRequires:	xdg-utils
 Requires:	wxWidgets >= 2.8.9
 Provides:	filezilla
 Obsoletes:	filezilla
