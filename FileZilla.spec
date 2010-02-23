@@ -24,6 +24,7 @@ BuildRequires:	cppunit-devel
 BuildRequires:	dbus-devel
 BuildRequires:	gettext-devel
 BuildRequires:	gnutls-devel >= 2.8.3
+BuildRequires:	gtk+2-devel
 BuildRequires:	libidn-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	pkgconfig
