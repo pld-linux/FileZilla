@@ -17,6 +17,7 @@ Group:		X11/Applications/Networking
 Source0:	http://downloads.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
 # Source0-md5:	df7828739a852ac3adbc1c010303115d
 Patch0:		%{name}-desktop.patch
+Patch1:		wxWidgets3.patch
 URL:		http://filezilla-project.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -48,6 +49,7 @@ opcjami oraz intuicyjnym interfejsem.
 %prep
 %setup -q -n filezilla-%{version}
 %patch0 -p1
+%patch1 -p1
 
 cd locales
 mv bg{_BG,}.po
