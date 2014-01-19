@@ -1,5 +1,6 @@
---- filezilla-3.7.3/configure.in~	2013-08-07 19:25:47.000000000 +0200
-+++ filezilla-3.7.3/configure.in	2014-01-18 20:16:07.142026895 +0100
+diff -ur filezilla-3.7.3/configure.in filezilla-3.7.3.wx3/configure.in
+--- filezilla-3.7.3/configure.in	2013-08-07 19:25:47.000000000 +0200
++++ filezilla-3.7.3.wx3/configure.in	2014-01-19 12:53:48.734827302 +0100
 @@ -111,9 +111,6 @@
          equivalent variable and wxWidgets version is $MIN_WX_VERSION or above.
      ])
@@ -10,9 +11,21 @@
  
    # --universal=no doesn't work correctly, it still accepts universal builds. Reject it manually here.
    if echo "$WX_CPPFLAGS" | grep __WXUNIVERSAL__ > /dev/null; then
+diff -ur filezilla-3.7.3/m4/wxwin.m4 filezilla-3.7.3.wx3/m4/wxwin.m4
+--- filezilla-3.7.3/m4/wxwin.m4	2013-04-05 05:30:06.000000000 +0200
++++ filezilla-3.7.3.wx3/m4/wxwin.m4	2014-01-19 12:53:48.734827302 +0100
+@@ -169,7 +169,7 @@
+     if test -n "$wx_ver_ok"; then
+ 
+       AC_MSG_RESULT(yes (version $WX_VERSION))
+-      WX_LIBS=`$WX_CONFIG_WITH_ARGS --libs`
++      WX_LIBS="`$WX_CONFIG_WITH_ARGS --libs` -lwx_gtk2_aui-3.0"
+ 
+       dnl is this even still appropriate?  --static is a real option now
+       dnl and WX_CONFIG_WITH_ARGS is likely to contain it if that is
 diff -ur filezilla-3.7.3/src/engine/ControlSocket.cpp filezilla-3.7.3.wx3/src/engine/ControlSocket.cpp
 --- filezilla-3.7.3/src/engine/ControlSocket.cpp	2013-06-09 05:30:07.000000000 +0200
-+++ filezilla-3.7.3.wx3/src/engine/ControlSocket.cpp	2014-01-18 20:24:16.408690021 +0100
++++ filezilla-3.7.3.wx3/src/engine/ControlSocket.cpp	2014-01-19 12:53:48.734827302 +0100
 @@ -120,7 +120,7 @@
  			msg = _("Critical file transfer error after transferring %s in %s");
  		else
@@ -188,7 +201,7 @@ diff -ur filezilla-3.7.3/src/engine/ControlSocket.cpp filezilla-3.7.3.wx3/src/en
 +}
 diff -ur filezilla-3.7.3/src/engine/directorylistingparser.cpp filezilla-3.7.3.wx3/src/engine/directorylistingparser.cpp
 --- filezilla-3.7.3/src/engine/directorylistingparser.cpp	2013-04-05 05:30:06.000000000 +0200
-+++ filezilla-3.7.3.wx3/src/engine/directorylistingparser.cpp	2014-01-18 20:40:39.912016233 +0100
++++ filezilla-3.7.3.wx3/src/engine/directorylistingparser.cpp	2014-01-19 12:53:48.734827302 +0100
 @@ -1,6 +1,7 @@
  #include <filezilla.h>
  #include "directorylistingparser.h"
@@ -199,7 +212,7 @@ diff -ur filezilla-3.7.3/src/engine/directorylistingparser.cpp filezilla-3.7.3.w
  #define new DEBUG_NEW
 diff -ur filezilla-3.7.3/src/engine/ftpcontrolsocket.cpp filezilla-3.7.3.wx3/src/engine/ftpcontrolsocket.cpp
 --- filezilla-3.7.3/src/engine/ftpcontrolsocket.cpp	2013-06-09 05:30:07.000000000 +0200
-+++ filezilla-3.7.3.wx3/src/engine/ftpcontrolsocket.cpp	2014-01-18 20:44:54.772014389 +0100
++++ filezilla-3.7.3.wx3/src/engine/ftpcontrolsocket.cpp	2014-01-19 12:53:48.734827302 +0100
 @@ -228,7 +228,7 @@
  		{
  			if (error != EAGAIN)
@@ -367,7 +380,7 @@ diff -ur filezilla-3.7.3/src/engine/ftpcontrolsocket.cpp filezilla-3.7.3.wx3/src
  	{
 diff -ur filezilla-3.7.3/src/engine/httpcontrolsocket.cpp filezilla-3.7.3.wx3/src/engine/httpcontrolsocket.cpp
 --- filezilla-3.7.3/src/engine/httpcontrolsocket.cpp	2012-11-02 05:30:06.000000000 +0100
-+++ filezilla-3.7.3.wx3/src/engine/httpcontrolsocket.cpp	2014-01-18 20:47:54.298679755 +0100
++++ filezilla-3.7.3.wx3/src/engine/httpcontrolsocket.cpp	2014-01-19 12:53:48.734827302 +0100
 @@ -355,7 +355,7 @@
  {
  	LogMessage(Debug_Verbose, _T("CHttpControlSocket::FileTransfer()"));
@@ -491,7 +504,7 @@ diff -ur filezilla-3.7.3/src/engine/httpcontrolsocket.cpp filezilla-3.7.3.wx3/sr
  	}
 diff -ur filezilla-3.7.3/src/engine/local_path.cpp filezilla-3.7.3.wx3/src/engine/local_path.cpp
 --- filezilla-3.7.3/src/engine/local_path.cpp	2011-05-02 05:30:19.000000000 +0200
-+++ filezilla-3.7.3.wx3/src/engine/local_path.cpp	2014-01-18 21:22:20.448664798 +0100
++++ filezilla-3.7.3.wx3/src/engine/local_path.cpp	2014-01-19 12:53:48.734827302 +0100
 @@ -1,6 +1,7 @@
  #include <filezilla.h>
  #include "local_path.h"
@@ -552,7 +565,7 @@ diff -ur filezilla-3.7.3/src/engine/local_path.cpp filezilla-3.7.3.wx3/src/engin
 +}
 diff -ur filezilla-3.7.3/src/engine/logging_private.h filezilla-3.7.3.wx3/src/engine/logging_private.h
 --- filezilla-3.7.3/src/engine/logging_private.h	2008-12-14 04:00:47.000000000 +0100
-+++ filezilla-3.7.3.wx3/src/engine/logging_private.h	2014-01-18 20:42:33.885348742 +0100
++++ filezilla-3.7.3.wx3/src/engine/logging_private.h	2014-01-19 12:53:48.734827302 +0100
 @@ -1,6 +1,9 @@
  #ifndef __LOGGING_PRIVATE_H__
  #define __LOGGING_PRIVATE_H__
@@ -565,7 +578,7 @@ diff -ur filezilla-3.7.3/src/engine/logging_private.h filezilla-3.7.3.wx3/src/en
  public:
 diff -ur filezilla-3.7.3/src/engine/misc.cpp filezilla-3.7.3.wx3/src/engine/misc.cpp
 --- filezilla-3.7.3/src/engine/misc.cpp	2012-10-24 05:30:07.000000000 +0200
-+++ filezilla-3.7.3.wx3/src/engine/misc.cpp	2014-01-18 21:07:20.222004649 +0100
++++ filezilla-3.7.3.wx3/src/engine/misc.cpp	2014-01-19 12:53:48.734827302 +0100
 @@ -363,12 +363,7 @@
  
  void MakeLowerAscii(wxString& str)
@@ -582,7 +595,7 @@ diff -ur filezilla-3.7.3/src/engine/misc.cpp filezilla-3.7.3.wx3/src/engine/misc
  wxString GetDependencyVersion(dependency::type d)
 diff -ur filezilla-3.7.3/src/engine/proxy.cpp filezilla-3.7.3.wx3/src/engine/proxy.cpp
 --- filezilla-3.7.3/src/engine/proxy.cpp	2012-11-02 05:30:06.000000000 +0100
-+++ filezilla-3.7.3.wx3/src/engine/proxy.cpp	2014-01-18 21:08:17.078670903 +0100
++++ filezilla-3.7.3.wx3/src/engine/proxy.cpp	2014-01-19 12:53:48.734827302 +0100
 @@ -169,11 +169,11 @@
  	case CSocketEvent::hostaddress:
  		{
@@ -617,7 +630,7 @@ diff -ur filezilla-3.7.3/src/engine/proxy.cpp filezilla-3.7.3.wx3/src/engine/pro
  					CSocketEventDispatcher::Get().SendEvent(evt);
 diff -ur filezilla-3.7.3/src/engine/server.cpp filezilla-3.7.3.wx3/src/engine/server.cpp
 --- filezilla-3.7.3/src/engine/server.cpp	2013-01-14 05:30:09.000000000 +0100
-+++ filezilla-3.7.3.wx3/src/engine/server.cpp	2014-01-18 21:11:06.592003009 +0100
++++ filezilla-3.7.3.wx3/src/engine/server.cpp	2014-01-19 12:53:48.734827302 +0100
 @@ -1,4 +1,5 @@
  #include <filezilla.h>
 +#include "logging_private.h"
@@ -645,7 +658,7 @@ diff -ur filezilla-3.7.3/src/engine/server.cpp filezilla-3.7.3.wx3/src/engine/se
  
 diff -ur filezilla-3.7.3/src/engine/serverpath.cpp filezilla-3.7.3.wx3/src/engine/serverpath.cpp
 --- filezilla-3.7.3/src/engine/serverpath.cpp	2013-04-05 05:30:06.000000000 +0200
-+++ filezilla-3.7.3.wx3/src/engine/serverpath.cpp	2014-01-18 21:21:17.041998590 +0100
++++ filezilla-3.7.3.wx3/src/engine/serverpath.cpp	2014-01-19 12:53:48.734827302 +0100
 @@ -276,7 +276,8 @@
  		len += iter->Length() + 2 + INTLENGTH;
  
@@ -667,7 +680,7 @@ diff -ur filezilla-3.7.3/src/engine/serverpath.cpp filezilla-3.7.3.wx3/src/engin
  	return safepath;
 diff -ur filezilla-3.7.3/src/engine/sftpcontrolsocket.cpp filezilla-3.7.3.wx3/src/engine/sftpcontrolsocket.cpp
 --- filezilla-3.7.3/src/engine/sftpcontrolsocket.cpp	2013-06-09 05:30:07.000000000 +0200
-+++ filezilla-3.7.3.wx3/src/engine/sftpcontrolsocket.cpp	2014-01-18 21:25:01.475330299 +0100
++++ filezilla-3.7.3.wx3/src/engine/sftpcontrolsocket.cpp	2014-01-19 12:53:48.738160636 +0100
 @@ -391,7 +391,7 @@
  
  int CSftpControlSocket::Connect(const CServer &server)
@@ -792,7 +805,7 @@ diff -ur filezilla-3.7.3/src/engine/sftpcontrolsocket.cpp filezilla-3.7.3.wx3/sr
  	pData->opState = rename_rename;
 diff -ur filezilla-3.7.3/src/engine/sizeformatting_base.cpp filezilla-3.7.3.wx3/src/engine/sizeformatting_base.cpp
 --- filezilla-3.7.3/src/engine/sizeformatting_base.cpp	2010-09-14 05:30:20.000000000 +0200
-+++ filezilla-3.7.3.wx3/src/engine/sizeformatting_base.cpp	2014-01-18 21:25:31.448663415 +0100
++++ filezilla-3.7.3.wx3/src/engine/sizeformatting_base.cpp	2014-01-19 12:53:48.738160636 +0100
 @@ -1,6 +1,7 @@
  #include <filezilla.h>
  #include "sizeformatting_base.h"
@@ -803,7 +816,7 @@ diff -ur filezilla-3.7.3/src/engine/sizeformatting_base.cpp filezilla-3.7.3.wx3/
  #endif
 diff -ur filezilla-3.7.3/src/engine/socket.cpp filezilla-3.7.3.wx3/src/engine/socket.cpp
 --- filezilla-3.7.3/src/engine/socket.cpp	2013-06-10 20:45:04.000000000 +0200
-+++ filezilla-3.7.3.wx3/src/engine/socket.cpp	2014-01-18 21:26:32.505329640 +0100
++++ filezilla-3.7.3.wx3/src/engine/socket.cpp	2014-01-19 12:53:48.738160636 +0100
 @@ -1,4 +1,5 @@
  #include <wx/defs.h>
 +#include <wx/intl.h>
@@ -821,7 +834,7 @@ diff -ur filezilla-3.7.3/src/engine/socket.cpp filezilla-3.7.3.wx3/src/engine/so
  {
 diff -ur filezilla-3.7.3/src/engine/string_coalescer.cpp filezilla-3.7.3.wx3/src/engine/string_coalescer.cpp
 --- filezilla-3.7.3/src/engine/string_coalescer.cpp	2012-10-06 05:30:12.000000000 +0200
-+++ filezilla-3.7.3.wx3/src/engine/string_coalescer.cpp	2014-01-18 21:28:24.208662165 +0100
++++ filezilla-3.7.3.wx3/src/engine/string_coalescer.cpp	2014-01-19 12:53:48.738160636 +0100
 @@ -66,7 +66,8 @@
  	{
  		// wxString is CoW, yet it doesn't even do this fast pointer
@@ -834,7 +847,7 @@ diff -ur filezilla-3.7.3/src/engine/string_coalescer.cpp filezilla-3.7.3.wx3/src
  
 diff -ur filezilla-3.7.3/src/engine/tlssocket.cpp filezilla-3.7.3.wx3/src/engine/tlssocket.cpp
 --- filezilla-3.7.3/src/engine/tlssocket.cpp	2013-06-01 09:37:58.000000000 +0200
-+++ filezilla-3.7.3.wx3/src/engine/tlssocket.cpp	2014-01-18 21:30:03.031994782 +0100
++++ filezilla-3.7.3.wx3/src/engine/tlssocket.cpp	2014-01-19 12:53:48.738160636 +0100
 @@ -23,7 +23,7 @@
  		return;
  	wxString s(msg, wxConvLocal);
@@ -915,7 +928,7 @@ diff -ur filezilla-3.7.3/src/engine/tlssocket.cpp filezilla-3.7.3.wx3/src/engine
  	}
 diff -ur filezilla-3.7.3/src/engine/transfersocket.cpp filezilla-3.7.3.wx3/src/engine/transfersocket.cpp
 --- filezilla-3.7.3/src/engine/transfersocket.cpp	2013-06-10 20:45:04.000000000 +0200
-+++ filezilla-3.7.3.wx3/src/engine/transfersocket.cpp	2014-01-18 21:31:02.895327683 +0100
++++ filezilla-3.7.3.wx3/src/engine/transfersocket.cpp	2014-01-19 12:53:48.738160636 +0100
 @@ -98,14 +98,14 @@
  		delete m_pSocketServer;
  		m_pSocketServer = 0;
@@ -1050,3 +1063,467 @@ diff -ur filezilla-3.7.3/src/engine/transfersocket.cpp filezilla-3.7.3.wx3/src/e
  		else
  			m_pControlSocket->LogMessage(::Error, _("Can't write data to file."));
  		TransferEnd(transfer_failure_critical);
+diff -ur filezilla-3.7.3/src/interface/aui_notebook_ex.cpp filezilla-3.7.3.wx3/src/interface/aui_notebook_ex.cpp
+--- filezilla-3.7.3/src/interface/aui_notebook_ex.cpp	2013-02-10 05:30:06.000000000 +0100
++++ filezilla-3.7.3.wx3/src/interface/aui_notebook_ex.cpp	2014-01-19 13:14:07.434818480 +0100
+@@ -3,8 +3,6 @@
+ #include "aui_notebook_ex.h"
+ #include <wx/dcmirror.h>
+ 
+-wxColor wxAuiStepColour(const wxColor& c, int ialpha);
+-
+ #ifdef __WXMSW__
+ #define TABCOLOUR wxSYS_COLOUR_3DFACE
+ #else
+@@ -67,8 +65,8 @@
+ 					m_original_dc->DrawRectangle(x, y, width, height);
+ 				else
+ 				{
+-					wxColour new_init = wxAuiStepColour(c, 150);
+-					wxColour new_dest = wxAuiStepColour(c, 100);
++					wxColour new_init = c.ChangeLightness(150);
++					wxColour new_dest = c.ChangeLightness(100);
+ 					m_original_dc->GradientFillLinear(wxRect(x, y, width + 1, height), new_init, new_dest, wxNORTH);
+ 				}
+ 			}
+@@ -77,7 +75,7 @@
+ 		{
+ 			wxColour c = wxSystemSettings::GetColour(TABCOLOUR);
+ 			if (c.Red() + c.Green() + c.Blue() < 384)
+-				m_original_dc->SetBrush(wxBrush(wxAuiStepColour(c, 100)));
++				m_original_dc->SetBrush(wxBrush(c.ChangeLightness(100)));
+ 			m_original_dc->DrawRectangle(x, y, width, height);
+ 		}
+ 	}
+@@ -96,8 +94,8 @@
+ 			}
+ 
+ 			// Dark theme
+-			wxColour new_init = wxAuiStepColour(initialColour, 100);
+-			wxColour new_dest = wxAuiStepColour(initialColour, 120);
++			wxColour new_init = initialColour.ChangeLightness(100);
++			wxColour new_dest = initialColour.ChangeLightness(120);
+ 			m_original_dc->GradientFillLinear(rect, new_init, new_dest, nDirection);
+ 		}
+ 		else if (!m_type)
+@@ -120,12 +118,12 @@
+ 			if (m_gradient_called == 1)
+ 			{
+ 				// Lighter inner border
+-				m_original_dc->SetBrush(wxBrush(wxAuiStepColour(destColour, 105)));
+-				m_original_dc->SetPen(wxPen(wxAuiStepColour(destColour, 105)));
++				m_original_dc->SetBrush(wxBrush(destColour.ChangeLightness(105)));
++				m_original_dc->SetPen(wxPen(destColour.ChangeLightness(105)));
+ 				m_original_dc->DrawRectangle(r2);
+ 
+-				wxColour new_init = wxAuiStepColour(destColour, 95);
+-				wxColour new_dest = wxAuiStepColour(destColour, 65);
++				wxColour new_init = destColour.ChangeLightness(95);
++				wxColour new_dest = destColour.ChangeLightness(65);
+ 				m_original_dc->GradientFillLinear(r, new_init, new_dest, nDirection);
+ 
+ 				if (!m_bottom)
+@@ -145,11 +143,11 @@
+ 					r2.height += 1;
+ 
+ 				// Lighter inner border
+-				m_original_dc->SetBrush(wxBrush(wxAuiStepColour(destColour, 105)));
+-				m_original_dc->SetPen(wxPen(wxAuiStepColour(destColour, 105)));
++				m_original_dc->SetBrush(wxBrush(destColour.ChangeLightness(105)));
++				m_original_dc->SetPen(wxPen(destColour.ChangeLightness(105)));
+ 				m_original_dc->DrawRectangle(r2);
+ 
+-				wxColour new_dest = wxAuiStepColour(destColour, 65);
++				wxColour new_dest = destColour.ChangeLightness(65);
+ 				if (!m_bottom)
+ 					r.height++;
+ 				m_original_dc->GradientFillLinear(r, new_dest, new_dest, nDirection);
+@@ -171,13 +169,13 @@
+ 				wxColour new_init, new_dest;
+ 				if (m_bottom)
+ 				{
+-					new_init = wxAuiStepColour(c, 70);
+-					new_dest = wxAuiStepColour(c, 100);
++					new_init = c.ChangeLightness(70);
++					new_dest = c.ChangeLightness(100);
+ 				}
+ 				else
+ 				{
+-					new_init = wxAuiStepColour(c, 85);
+-					new_dest = wxAuiStepColour(c, 100);
++					new_init = c.ChangeLightness(85);
++					new_dest = c.ChangeLightness(100);
+ 				}
+ 				m_original_dc->GradientFillLinear(rect, new_init, new_dest, nDirection);
+ 			}
+@@ -185,7 +183,7 @@
+ 	}
+ 
+ #ifdef __WXGTK__
+-	virtual GdkWindow* GetGDKWindow() const { return m_original_dc->GetGDKWindow(); }
++//	virtual GdkWindow* GetGDKWindow() const { return m_original_dc->GetGDKWindow(); }
+ #endif
+ protected:
+ 	int m_gradient_called;
+@@ -215,9 +213,9 @@
+ 	virtual wxAuiTabArt* Clone()
+ 	{
+ 		wxAuiTabArtEx *art = new wxAuiTabArtEx(m_pNotebook, m_bottom, m_data);
+-		art->SetNormalFont(m_normal_font);
+-		art->SetSelectedFont(m_selected_font);
+-		art->SetMeasuringFont(m_measuring_font);
++		art->SetNormalFont(m_normalFont);
++		art->SetSelectedFont(m_selectedFont);
++		art->SetMeasuringFont(m_measuringFont);
+ 		return art;
+ 	}
+ 
+@@ -257,12 +255,12 @@
+ 						 int* x_extent)
+ 	{
+ #ifndef __WXMAC__
+-		m_base_colour = wxSystemSettings::GetColour(TABCOLOUR);
++		m_baseColour = wxSystemSettings::GetColour(TABCOLOUR);
+ #endif
+ 		if (!pane.active)
+ 		{
+-			if (m_base_colour.Red() + m_base_colour.Green() + m_base_colour.Blue() >= 384)
+-				m_base_colour = wxColour( m_base_colour.Red() * 0.95, m_base_colour.Green() * 0.95, m_base_colour.Blue() * 0.95 );
++			if (m_baseColour.Red() + m_baseColour.Green() + m_baseColour.Blue() >= 384)
++				m_baseColour = wxColour( m_baseColour.Red() * 0.95, m_baseColour.Green() * 0.95, m_baseColour.Blue() * 0.95 );
+ 
+ 			dc.SetTextForeground(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT));
+ 			if (m_pNotebook->Highlighted(m_pNotebook->GetPageIndex(pane.window)))
+@@ -270,26 +268,26 @@
+ 				if (!m_fonts_initialized)
+ 				{
+ 					m_fonts_initialized = true;
+-					m_original_normal_font = m_normal_font;
+-					m_highlighted_font = m_normal_font;
++					m_original_normal_font = m_normalFont;
++					m_highlighted_font = m_normalFont;
+ 					m_highlighted_font.SetWeight(wxFONTWEIGHT_BOLD);
+ 					m_highlighted_font.SetStyle(wxFONTSTYLE_ITALIC);
+ 				}
+-				m_normal_font = m_highlighted_font;
++				m_normalFont = m_highlighted_font;
+ 			}
+ 			else if (m_fonts_initialized)
+-				m_normal_font = m_original_normal_font;
++				m_normalFont = m_original_normal_font;
+ 		}
+ 
+-		CFilterDC filter_dc(dc, pane.active ? 1 : 0, (m_tab_ctrl_height % 2) != 0, m_bottom);
++		CFilterDC filter_dc(dc, pane.active ? 1 : 0, (m_tabCtrlHeight % 2) != 0, m_bottom);
+ 		wxAuiDefaultTabArt::DrawTab(*((wxDC*)&filter_dc), wnd, pane, in_rect, close_button_state, out_tab_rect, out_button_rect, x_extent);
+ 
+-		m_base_colour = wxSystemSettings::GetColour(TABCOLOUR);
++		m_baseColour = wxSystemSettings::GetColour(TABCOLOUR);
+ 	}
+ 
+ 	virtual void DrawBackground(wxDC& dc, wxWindow* wnd, const wxRect& rect)
+ 	{
+-		CFilterDC filter_dc(dc, 2, (m_tab_ctrl_height % 2) != 0, m_bottom);
++		CFilterDC filter_dc(dc, 2, (m_tabCtrlHeight % 2) != 0, m_bottom);
+ 		wxAuiDefaultTabArt::DrawBackground(*((wxDC*)&filter_dc), wnd, rect);
+ 	}
+ protected:
+diff -ur filezilla-3.7.3/src/interface/commandqueue.cpp filezilla-3.7.3.wx3/src/interface/commandqueue.cpp
+--- filezilla-3.7.3/src/interface/commandqueue.cpp	2013-05-13 05:30:10.000000000 +0200
++++ filezilla-3.7.3.wx3/src/interface/commandqueue.cpp	2014-01-19 12:53:48.738160636 +0100
+@@ -289,7 +289,7 @@
+ 
+ 	wxCommandEvent evt(fzEVT_GRANTEXCLUSIVEENGINEACCESS);
+ 	evt.SetId(m_requestId);
+-	m_pMainFrame->GetQueue()->AddPendingEvent(evt);
++	m_pMainFrame->GetQueue()->GetEventHandler()->AddPendingEvent(evt);
+ }
+ 
+ CFileZillaEngine* CCommandQueue::GetEngineExclusive(int requestId)
+diff -ur filezilla-3.7.3/src/interface/filelistctrl.cpp filezilla-3.7.3.wx3/src/interface/filelistctrl.cpp
+--- filezilla-3.7.3/src/interface/filelistctrl.cpp	2012-11-15 05:30:05.000000000 +0100
++++ filezilla-3.7.3.wx3/src/interface/filelistctrl.cpp	2014-01-19 12:53:48.738160636 +0100
+@@ -11,6 +11,7 @@
+ #ifdef __WXGTK__
+ #include <gtk/gtk.h>
+ #endif
++#include <wx/dcclient.h>
+ 
+ #ifndef __WXMSW__
+ DECLARE_EVENT_TYPE(fz_EVT_FILELIST_FOCUSCHANGE, -1)
+diff -ur filezilla-3.7.3/src/interface/import.cpp filezilla-3.7.3.wx3/src/interface/import.cpp
+--- filezilla-3.7.3/src/interface/import.cpp	2012-10-06 05:30:11.000000000 +0200
++++ filezilla-3.7.3.wx3/src/interface/import.cpp	2014-01-19 12:53:48.738160636 +0100
+@@ -145,8 +145,8 @@
+ 			pass[i + 2] < '0' || pass[i + 2] > '9')
+ 			return _T("");
+ 		int number = (pass[i] - '0') * 100 +
+-						(pass[i + 1] - '0') * 10 +
+-						pass[i + 2] - '0';
++						((char)pass[i + 1] - '0') * 10 +
++						(char)pass[i + 2] - '0';
+ 		wxChar c = number ^ key[(i / 3 + pos) % strlen(key)];
+ 		output += c;
+ 	}
+diff -ur filezilla-3.7.3/src/interface/led.cpp filezilla-3.7.3.wx3/src/interface/led.cpp
+--- filezilla-3.7.3/src/interface/led.cpp	2012-12-03 05:30:05.000000000 +0100
++++ filezilla-3.7.3.wx3/src/interface/led.cpp	2014-01-19 12:53:48.738160636 +0100
+@@ -1,6 +1,7 @@
+ #include <filezilla.h>
+ #include "led.h"
+ #include "filezillaapp.h"
++#include <wx/dcclient.h>
+ 
+ #ifdef _DEBUG
+ #define new DEBUG_NEW
+diff -ur filezilla-3.7.3/src/interface/Mainfrm.cpp filezilla-3.7.3.wx3/src/interface/Mainfrm.cpp
+--- filezilla-3.7.3/src/interface/Mainfrm.cpp	2013-06-25 19:11:01.000000000 +0200
++++ filezilla-3.7.3.wx3/src/interface/Mainfrm.cpp	2014-01-19 12:53:48.738160636 +0100
+@@ -754,14 +754,13 @@
+ 			// Do a crude approach: Drop everything unexpected...
+ 			for (unsigned int i = 0; i < version.Len(); i++)
+ 			{
+-				wxChar& c = version[i];
+ 				if ((version[i] >= '0' && version[i] <= '9') ||
+ 					(version[i] >= 'a' && version[i] <= 'z') ||
+ 					(version[i] >= 'A' && version[i] <= 'Z') ||
+ 					version[i] == '-' || version[i] == '.' ||
+ 					version[i] == '_')
+ 				{
+-					url += c;
++					url += version[i];
+ 				}
+ 			}
+ 		}
+@@ -779,7 +778,7 @@
+ 			{
+ 				pStatusBar->Show(show);
+ 				wxSizeEvent evt;
+-				controls->pLocalListViewPanel->ProcessEvent(evt);
++				controls->pLocalListViewPanel->GetEventHandler()->ProcessEvent(evt);
+ 			}
+ 		}
+ 		if (controls && controls->pRemoteListViewPanel)
+@@ -789,7 +788,7 @@
+ 			{
+ 				pStatusBar->Show(show);
+ 				wxSizeEvent evt;
+-				controls->pRemoteListViewPanel->ProcessEvent(evt);
++				controls->pRemoteListViewPanel->GetEventHandler()->ProcessEvent(evt);
+ 			}
+ 		}
+ 	}
+diff -ur filezilla-3.7.3/src/interface/netconfwizard.cpp filezilla-3.7.3.wx3/src/interface/netconfwizard.cpp
+--- filezilla-3.7.3/src/interface/netconfwizard.cpp	2012-11-10 19:36:36.000000000 +0100
++++ filezilla-3.7.3.wx3/src/interface/netconfwizard.cpp	2014-01-19 12:53:48.738160636 +0100
+@@ -777,11 +777,10 @@
+ 			wxString hexIP = ip;
+ 			for (unsigned int i = 0; i < hexIP.Length(); i++)
+ 			{
+-				wxChar& c = hexIP[i];
+-				if (c == '.')
+-					c = '-';
++				if (hexIP[i] == '.')
++					hexIP[i] = '-';
+ 				else
+-					c = c - '0' + 'a';
++					hexIP[i] = hexIP[i] - '0' + 'a';
+ 			}
+ 
+ 			if (!Send(_T("IP ") + ip + _T(" ") + hexIP))
+diff -ur filezilla-3.7.3/src/interface/queue.cpp filezilla-3.7.3.wx3/src/interface/queue.cpp
+--- filezilla-3.7.3/src/interface/queue.cpp	2013-01-07 05:30:19.000000000 +0100
++++ filezilla-3.7.3.wx3/src/interface/queue.cpp	2014-01-19 12:53:48.738160636 +0100
+@@ -1442,7 +1442,7 @@
+ void CQueueViewBase::OnNavigationKey(wxNavigationKeyEvent& event)
+ {
+ 	event.SetEventObject(m_pQueue);
+-	m_pQueue->ProcessEvent(event);
++	m_pQueue->GetEventHandler()->ProcessEvent(event);
+ }
+ 
+ void CQueueViewBase::OnChar(wxKeyEvent& event)
+diff -ur filezilla-3.7.3/src/interface/queue_storage.cpp filezilla-3.7.3.wx3/src/interface/queue_storage.cpp
+--- filezilla-3.7.3/src/interface/queue_storage.cpp	2012-10-25 05:30:07.000000000 +0200
++++ filezilla-3.7.3.wx3/src/interface/queue_storage.cpp	2014-01-19 12:53:48.738160636 +0100
+@@ -135,7 +135,8 @@
+ 	{
+ 		// wxString is CoW, yet it doesn't even do this fast pointer
+ 		// comparison in it's less and/or equal operator(s).
+-		return lhs.c_str() == rhs.c_str() || lhs == rhs;
++//		return lhs.c_str() == rhs.c_str() || lhs == rhs;
++		return lhs == rhs;
+ 	}
+ };
+ 
+@@ -814,9 +815,10 @@
+ 	int len = sqlite3_column_bytes16(statement, index);
+ 	if (text)
+ 	{
+-		wxChar* out = ret.GetWriteBuf( len );
++		wxStringBuffer strbuf(ret, len);
++		wxChar* out = strbuf;
+ 		int outlen = utf16_.ToWChar( out, len, text, len );
+-		ret.UngetWriteBuf( outlen );
++		strbuf.~wxStringBuffer();
+ 		if (shrink)
+ 			ret.Shrink();
+ 	}
+diff -ur filezilla-3.7.3/src/interface/QueueView.cpp filezilla-3.7.3.wx3/src/interface/QueueView.cpp
+--- filezilla-3.7.3/src/interface/QueueView.cpp	2013-05-13 05:30:10.000000000 +0200
++++ filezilla-3.7.3.wx3/src/interface/QueueView.cpp	2014-01-19 12:53:48.738160636 +0100
+@@ -3420,7 +3420,8 @@
+ 
+ 	wxString result;
+ 
+-	wxChar* start = result.GetWriteBuf(filename.Len() + 1);
++	wxStringBuffer strbuf(result, filename.Len() + 1);
++	wxChar* start = strbuf;
+ 	wxChar* buf = start;
+ 
+ 	const wxChar* p = filename.c_str();
+@@ -3457,7 +3458,7 @@
+ 	}
+ 	*buf = 0;
+ 
+-	result.UngetWriteBuf( buf - start );
++	strbuf.~wxStringBuffer();
+ 
+ 	return result;
+ }
+diff -ur filezilla-3.7.3/src/interface/quickconnectbar.cpp filezilla-3.7.3.wx3/src/interface/quickconnectbar.cpp
+--- filezilla-3.7.3/src/interface/quickconnectbar.cpp	2013-06-09 05:30:06.000000000 +0200
++++ filezilla-3.7.3.wx3/src/interface/quickconnectbar.cpp	2014-01-19 12:53:48.738160636 +0100
+@@ -222,12 +222,12 @@
+ 	if (event.GetDirection() && event.GetEventObject() == XRCCTRL(*this, "ID_QUICKCONNECT_DROPDOWN", wxButton))
+ 	{
+ 		event.SetEventObject(this);
+-		GetParent()->ProcessEvent(event);
++		GetParent()->GetEventHandler()->ProcessEvent(event);
+ 	}
+ 	else if (!event.GetDirection() && event.GetEventObject() == m_pHost)
+ 	{
+ 		event.SetEventObject(this);
+-		GetParent()->ProcessEvent(event);
++		GetParent()->GetEventHandler()->ProcessEvent(event);
+ 	}
+ 	else
+ 		event.Skip();
+diff -ur filezilla-3.7.3/src/interface/RemoteTreeView.cpp filezilla-3.7.3.wx3/src/interface/RemoteTreeView.cpp
+--- filezilla-3.7.3/src/interface/RemoteTreeView.cpp	2013-01-14 05:30:08.000000000 +0100
++++ filezilla-3.7.3.wx3/src/interface/RemoteTreeView.cpp	2014-01-19 12:53:48.738160636 +0100
+@@ -350,7 +350,7 @@
+ 	SetItemImages(parent, false);
+ 
+ #ifndef __WXMSW__
+-	m_freezeCount--;
++	Thaw();
+ #endif
+ 	if (!modified)
+ 		SafeSelectItem(parent);
+diff -ur filezilla-3.7.3/src/interface/settings/optionspage_themes.cpp filezilla-3.7.3.wx3/src/interface/settings/optionspage_themes.cpp
+--- filezilla-3.7.3/src/interface/settings/optionspage_themes.cpp	2012-10-06 05:30:06.000000000 +0200
++++ filezilla-3.7.3.wx3/src/interface/settings/optionspage_themes.cpp	2014-01-19 12:53:48.741493969 +0100
+@@ -7,6 +7,7 @@
+ #include "../themeprovider.h"
+ 
+ #include <wx/scrolwin.h>
++#include <wx/dcclient.h>
+ 
+ BEGIN_EVENT_TABLE(COptionsPageThemes, COptionsPage)
+ EVT_CHOICE(XRCID("ID_THEME"), COptionsPageThemes::OnThemeChange)
+diff -ur filezilla-3.7.3/src/interface/sitemanager_dialog.cpp filezilla-3.7.3.wx3/src/interface/sitemanager_dialog.cpp
+--- filezilla-3.7.3/src/interface/sitemanager_dialog.cpp	2013-05-01 05:30:04.000000000 +0200
++++ filezilla-3.7.3.wx3/src/interface/sitemanager_dialog.cpp	2014-01-19 12:53:48.741493969 +0100
+@@ -11,6 +11,7 @@
+ #include "xmlfunctions.h"
+ 
+ #include <wx/dnd.h>
++#include <wx/dcclient.h>
+ 
+ #ifdef __WXMSW__
+ #include "commctrl.h"
+diff -ur filezilla-3.7.3/src/interface/statusbar.cpp filezilla-3.7.3.wx3/src/interface/statusbar.cpp
+--- filezilla-3.7.3/src/interface/statusbar.cpp	2013-06-09 05:30:06.000000000 +0200
++++ filezilla-3.7.3.wx3/src/interface/statusbar.cpp	2014-01-19 12:53:48.741493969 +0100
+@@ -6,6 +6,7 @@
+ #include "statusbar.h"
+ #include "themeprovider.h"
+ #include "verifycertdialog.h"
++#include <wx/dcclient.h>
+ 
+ static const int statbarWidths[3] = {
+ 	-3, 0, 35
+@@ -153,11 +154,8 @@
+ void wxStatusBarEx::SetStatusText(const wxString& text, int number /*=0*/)
+ {
+ 	// Basically identical to the wx one, but not calling Update
+-	wxString oldText = m_statusStrings[number];
+-	if (oldText != text)
++	if ( m_panes[number].SetText(text) )
+ 	{
+-		m_statusStrings[number] = text;
+-
+ 		wxRect rect;
+ 		GetFieldRect(number, rect);
+ 
+diff -ur filezilla-3.7.3/src/interface/StatusView.cpp filezilla-3.7.3.wx3/src/interface/StatusView.cpp
+--- filezilla-3.7.3/src/interface/StatusView.cpp	2013-06-09 05:30:05.000000000 +0200
++++ filezilla-3.7.3.wx3/src/interface/StatusView.cpp	2014-01-19 12:53:48.741493969 +0100
+@@ -2,6 +2,7 @@
+ #include "StatusView.h"
+ #include <wx/wupdlock.h>
+ #include "Options.h"
++#include <wx/dcclient.h>
+ 
+ #ifdef _DEBUG
+ #define new DEBUG_NEW
+@@ -58,7 +59,7 @@
+ 	{
+ 		wxWindow* parent = GetParent();
+ 		event.SetEventObject(parent);
+-		parent->ProcessEvent(event);
++		parent->GetEventHandler()->ProcessEvent(event);
+ 	}
+ #else
+ 	void OnKeyDown(wxKeyEvent& event)
+@@ -76,7 +77,7 @@
+ 		navEvent.SetDirection(!event.ShiftDown());
+ 		navEvent.SetFromTab(true);
+ 		navEvent.ResumePropagation(1);
+-		parent->ProcessEvent(navEvent);
++		parent->GetEventHandler()->ProcessEvent(navEvent);
+ 	}
+ #endif
+ };
+diff -ur filezilla-3.7.3/src/interface/viewheader.cpp filezilla-3.7.3.wx3/src/interface/viewheader.cpp
+--- filezilla-3.7.3/src/interface/viewheader.cpp	2013-06-09 05:30:06.000000000 +0200
++++ filezilla-3.7.3.wx3/src/interface/viewheader.cpp	2014-01-19 12:53:48.741493969 +0100
+@@ -10,6 +10,7 @@
+ #endif
+ 
+ #include <wx/combobox.h>
++#include <wx/dcclient.h>
+ 
+ #ifdef __WXMSW__
+ const int border_offset = 0;
+@@ -67,7 +68,7 @@
+ 		navEvent.SetDirection(!event.ShiftDown());
+ 		navEvent.SetFromTab(true);
+ 		navEvent.ResumePropagation(1);
+-		m_parent->ProcessEvent(navEvent);
++		m_parent->GetEventHandler()->ProcessEvent(navEvent);
+ 	}
+ 
+ 	void OnChar(wxKeyEvent& event)
+diff -ur filezilla-3.7.3/src/interface/xh_toolb_ex.cpp filezilla-3.7.3.wx3/src/interface/xh_toolb_ex.cpp
+--- filezilla-3.7.3/src/interface/xh_toolb_ex.cpp	2012-10-06 05:30:11.000000000 +0200
++++ filezilla-3.7.3.wx3/src/interface/xh_toolb_ex.cpp	2014-01-19 12:53:48.741493969 +0100
+@@ -1,6 +1,7 @@
+ // Based upon src/xrc/xh_toolb.cpp from wxWidgets
+ 
+ #include <filezilla.h>
++#include <wx/xml/xml.h>
+ #include "xh_toolb_ex.h"
+ 
+ wxSize wxToolBarXmlHandlerEx::m_iconSize(-1, -1);
