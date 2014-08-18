@@ -10,14 +10,13 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.7.3
-Release:	3
+Version:	3.9.0.3
+Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://downloads.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
-# Source0-md5:	df7828739a852ac3adbc1c010303115d
+# Source0-md5:	fcc906f3a08edeb60aa056675e7b0d94
 Patch0:		%{name}-desktop.patch
-Patch1:		wxWidgets3.patch
 URL:		http://filezilla-project.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -29,11 +28,11 @@ BuildRequires:	gtk+2-devel
 BuildRequires:	libidn-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	pkgconfig
-BuildRequires:	wxGTK2-unicode-devel >= 2.8.9
-BuildRequires:	wxWidgets-devel >= 2.8.9
-BuildRequires:	wxWidgets-utils >= 2.8.9
+BuildRequires:	wxGTK2-unicode-devel >= 3.0.1
+BuildRequires:	wxWidgets-devel >= 3.0.1
+BuildRequires:	wxWidgets-utils >= 3.0.1
 BuildRequires:	xdg-utils
-Requires:	wxWidgets >= 2.8.9
+Requires:	wxWidgets >= 3.0.1
 Provides:	filezilla
 Obsoletes:	filezilla
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -49,7 +48,6 @@ opcjami oraz intuicyjnym interfejsem.
 %prep
 %setup -q -n filezilla-%{version}
 %patch0 -p1
-%patch1 -p1
 
 cd locales
 mv bg{_BG,}.po
@@ -80,7 +78,7 @@ mv th{_TH,}.po
 mv uk{_UA,}.po
 mv vi{_VN,}.po
 # Temporary - FIXME:
-rm -f ca@valencia.po
+rm -f ca@valencia.po 
 
 %build
 %{__libtoolize}
@@ -101,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # Temporary - FIXME:
 rm -rf \
-	$RPM_BUILD_ROOT%{_datadir}/locale/ca_ES@valencia
+	$RPM_BUILD_ROOT%{_datadir}/locale/{ca_ES@valencia,co,kab,lo_LA}
 
 %find_lang filezilla
 
@@ -121,7 +119,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/filezilla/resources/*.png
 %{_datadir}/filezilla/resources/*.wav
 %{_datadir}/filezilla/resources/*.xml
-%{_datadir}/filezilla/resources/*.xrc
+%dir %{_datadir}/filezilla/resources/xrc
+%{_datadir}/filezilla/resources/xrc/*.xrc
 %dir %{_datadir}/filezilla/resources/16x16
 %{_datadir}/filezilla/resources/16x16/*.png
 %dir %{_datadir}/filezilla/resources/32x32
