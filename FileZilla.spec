@@ -22,7 +22,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cppunit-devel
 BuildRequires:	dbus-devel
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	gnutls-devel >= 2.8.3
 BuildRequires:	gtk+2-devel
 BuildRequires:	libidn-devel
