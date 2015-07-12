@@ -10,12 +10,12 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.9.0.3
+Version:	3.12.0.2
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://downloads.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
-# Source0-md5:	fcc906f3a08edeb60aa056675e7b0d94
+# Source0-md5:	7c5f3b8acd52777bab164ddae6b2f784
 Patch0:		%{name}-desktop.patch
 URL:		http://filezilla-project.org/
 BuildRequires:	autoconf
@@ -53,8 +53,7 @@ cd locales
 mv bg{_BG,}.po
 mv cs{_CZ,}.po
 mv da{_DK,}.po
-mv et{_EE,}.po
-mv eu{_ES,}.po
+#mv et{_EE,}.po
 mv fa{_IR,}.po
 mv fi{_FI,}.po
 mv gl{_ES,}.po
@@ -112,6 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/filezilla
 %attr(755,root,root) %{_bindir}/fzsftp
 %attr(755,root,root) %{_bindir}/fzputtygen
+%{_datadir}/appdata/filezilla.appdata.xml
 %dir %{_datadir}/filezilla
 %dir %{_datadir}/filezilla/docs
 %{_datadir}/filezilla/docs/*
@@ -122,7 +122,12 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/filezilla/resources/xrc
 %{_datadir}/filezilla/resources/xrc/*.xrc
 %dir %{_datadir}/filezilla/resources/16x16
+%{_datadir}/filezilla/resources/16x16/*.gif
 %{_datadir}/filezilla/resources/16x16/*.png
+%dir %{_datadir}/filezilla/resources/20x20
+%{_datadir}/filezilla/resources/20x20/*.png
+%dir %{_datadir}/filezilla/resources/24x24
+%{_datadir}/filezilla/resources/24x24/*.png
 %dir %{_datadir}/filezilla/resources/32x32
 %{_datadir}/filezilla/resources/32x32/*.png
 %dir %{_datadir}/filezilla/resources/48x48
@@ -139,6 +144,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/filezilla/resources/cyril/theme.xml
 %dir %{_datadir}/filezilla/resources/cyril/16x16
 %{_datadir}/filezilla/resources/cyril/16x16/*.png
+%dir %{_datadir}/filezilla/resources/flatzilla
+%dir %{_datadir}/filezilla/resources/flatzilla/16x16
+%{_datadir}/filezilla/resources/flatzilla/16x16/*.png
+%dir %{_datadir}/filezilla/resources/flatzilla/24x24
+%{_datadir}/filezilla/resources/flatzilla/24x24/*.png
+%dir %{_datadir}/filezilla/resources/flatzilla/32x32
+%{_datadir}/filezilla/resources/flatzilla/32x32/*.png
+%dir %{_datadir}/filezilla/resources/flatzilla/48x48
+%{_datadir}/filezilla/resources/flatzilla/48x48/*.png
+%{_datadir}/filezilla/resources/flatzilla/theme.xml
 %dir %{_datadir}/filezilla/resources/lone
 %{_datadir}/filezilla/resources/lone/theme.xml
 %dir %{_datadir}/filezilla/resources/lone/16x16
@@ -157,10 +172,26 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/filezilla/resources/opencrystal/theme.xml
 %dir %{_datadir}/filezilla/resources/opencrystal/16x16
 %{_datadir}/filezilla/resources/opencrystal/16x16/*.png
+%dir %{_datadir}/filezilla/resources/opencrystal/20x20
+%{_datadir}/filezilla/resources/opencrystal/20x20/*.png
+%dir %{_datadir}/filezilla/resources/opencrystal/24x24
+%{_datadir}/filezilla/resources/opencrystal/24x24/*.png
 %dir %{_datadir}/filezilla/resources/opencrystal/32x32
 %{_datadir}/filezilla/resources/opencrystal/32x32/*.png
 %dir %{_datadir}/filezilla/resources/opencrystal/48x48
 %{_datadir}/filezilla/resources/opencrystal/48x48/*.png
+%dir %{_datadir}/filezilla/resources/sun
+%dir %{_datadir}/filezilla/resources/sun/48x48
+%{_datadir}/filezilla/resources/sun/48x48/*.png
+%{_datadir}/filezilla/resources/sun/theme.xml
+%dir %{_datadir}/filezilla/resources/tango
+%dir %{_datadir}/filezilla/resources/tango/16x16
+%{_datadir}/filezilla/resources/tango/16x16/*.png
+%dir %{_datadir}/filezilla/resources/tango/32x32
+%{_datadir}/filezilla/resources/tango/32x32/*.png
+%dir %{_datadir}/filezilla/resources/tango/48x48
+%{_datadir}/filezilla/resources/tango/48x48/*.png
+%{_datadir}/filezilla/resources/tango/theme.xml
 %{_iconsdir}/hicolor/*/apps/filezilla.png
 %{_desktopdir}/*.desktop
 %{_pixmapsdir}/*.png
