@@ -10,12 +10,12 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.15.0.2
-Release:	2
+Version:	3.17.0
+Release:	0.rc1.1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://downloads.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
-# Source0-md5:	fe83f8f1b9a52934bd437615fa408131
+Source0:	http://downloads.sourceforge.net/filezilla/%{name}_%{version}-rc1_src.tar.bz2
+# Source0-md5:	b4425da813b1cef83f41a10293e77351
 Patch0:		%{name}-desktop.patch
 URL:		http://filezilla-project.org/
 BuildRequires:	autoconf
@@ -25,9 +25,10 @@ BuildRequires:	dbus-devel
 BuildRequires:	gettext-tools
 BuildRequires:	gnutls-devel >= 2.8.3
 BuildRequires:	gtk+2-devel
-BuildRequires:	libfilezilla-devel
+BuildRequires:	libfilezilla-devel >= 0.5.0
 BuildRequires:	libidn-devel
 BuildRequires:	libtool >= 2:1.5
+BuildRequires:	nettle-devel >= 3.1
 BuildRequires:	pkgconfig
 BuildRequires:	pugixml-devel >= 1.6-2
 BuildRequires:	systemd-devel
@@ -49,13 +50,13 @@ FileZilla to szybki i wiarygodny klient FTP z wieloma przydatnymi
 opcjami oraz intuicyjnym interfejsem.
 
 %prep
-%setup -q -n filezilla-%{version}
+%setup -q -n filezilla-%{version}-rc1
 %patch0 -p1
 
 cd locales
 mv bg{_BG,}.po
 mv cs{_CZ,}.po
-mv da{_DK,}.po
+#mv da{_DK,}.po
 #mv et{_EE,}.po
 mv fa{_IR,}.po
 mv fi{_FI,}.po
