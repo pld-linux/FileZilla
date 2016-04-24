@@ -11,11 +11,11 @@ Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
 Version:	3.17.0
-Release:	0.rc1.1
+Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://downloads.sourceforge.net/filezilla/%{name}_%{version}-rc1_src.tar.bz2
-# Source0-md5:	b4425da813b1cef83f41a10293e77351
+Source0:	http://downloads.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
+# Source0-md5:	0a69a0b4a7a805a3d0fe50177698c98e
 Patch0:		%{name}-desktop.patch
 URL:		http://filezilla-project.org/
 BuildRequires:	autoconf
@@ -50,7 +50,7 @@ FileZilla to szybki i wiarygodny klient FTP z wieloma przydatnymi
 opcjami oraz intuicyjnym interfejsem.
 
 %prep
-%setup -q -n filezilla-%{version}-rc1
+%setup -q -n filezilla-%{version}
 %patch0 -p1
 
 cd locales
