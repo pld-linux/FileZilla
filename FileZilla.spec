@@ -10,12 +10,12 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.22.2.2
+Version:	3.23.0.2
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://downloads.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
-# Source0-md5:	89277dffb628695e5e9fc6cae2985046
+# Source0-md5:	5f52629d11a16ed2d547a4b200d3448c
 Patch0:		%{name}-desktop.patch
 URL:		http://filezilla-project.org/
 BuildRequires:	autoconf
@@ -25,7 +25,7 @@ BuildRequires:	dbus-devel
 BuildRequires:	gettext-tools
 BuildRequires:	gnutls-devel >= 3.4.0
 BuildRequires:	gtk+2-devel
-BuildRequires:	libfilezilla-devel >= 0.8.0
+BuildRequires:	libfilezilla-devel >= 0.9.0
 BuildRequires:	libidn-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	nettle-devel >= 3.1
@@ -81,7 +81,7 @@ mv th{_TH,}.po
 mv uk{_UA,}.po
 mv vi{_VN,}.po
 # Temporary - FIXME:
-rm -f ca@valencia.po 
+rm -f ca@valencia.po
 
 %build
 %{__libtoolize}
@@ -102,7 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # Temporary - FIXME:
 rm -rf \
-	$RPM_BUILD_ROOT%{_datadir}/locale/{ca_ES@valencia,co,kab,lo_LA}
+	$RPM_BUILD_ROOT%{_localedir}/{ca_ES@valencia,co,kab,lo_LA}
 
 %find_lang filezilla
 
@@ -196,6 +196,16 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/filezilla/resources/tango/48x48
 %{_datadir}/filezilla/resources/tango/48x48/*.png
 %{_datadir}/filezilla/resources/tango/theme.xml
+%dir %{_datadir}/filezilla/resources/480x480
+%{_datadir}/filezilla/resources/480x480/*.png
+%dir %{_datadir}/filezilla/resources/classic
+%dir %{_datadir}/filezilla/resources/classic/16x16
+%{_datadir}/filezilla/resources/classic/16x16/*.png
+%{_datadir}/filezilla/resources/classic/theme.xml
+%dir %{_datadir}/filezilla/resources/default
+%dir %{_datadir}/filezilla/resources/default/480x480
+%{_datadir}/filezilla/resources/default/480x480/*.png
+%{_datadir}/filezilla/resources/default/theme.xml
 %{_iconsdir}/hicolor/*/apps/filezilla.png
 %{_desktopdir}/*.desktop
 %{_pixmapsdir}/*.png
