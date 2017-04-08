@@ -54,34 +54,34 @@ opcjami oraz intuicyjnym interfejsem.
 %patch0 -p1
 
 cd locales
-mv bg{_BG,}.po
-mv cs{_CZ,}.po
-#mv da{_DK,}.po
-#mv et{_EE,}.po
-mv fa{_IR,}.po
-mv fi{_FI,}.po
-mv gl{_ES,}.po
-mv he{_IL,}.po
-mv hu{_HU,}.po
-mv id{_ID,}.po
-mv ja{_JP,}.po
-mv km{_KH,}.po
-mv ko{_KR,}.po
-mv lt{_LT,}.po
-mv lv{_LV,}.po
-mv mk{_MK,}.po
-mv nb{_NO,}.po
-mv nn{_NO,}.po
-mv pl{_PL,}.po
-mv pt{_PT,}.po
-mv ro{_RO,}.po
-mv sk{_SK,}.po
-mv sl{_SI,}.po
-mv th{_TH,}.po
-mv uk{_UA,}.po
-mv vi{_VN,}.po
+%{__mv} bg{_BG,}.po
+%{__mv} cs{_CZ,}.po
+#%{__mv} da{_DK,}.po
+#%{__mv} et{_EE,}.po
+%{__mv} fa{_IR,}.po
+%{__mv} fi{_FI,}.po
+%{__mv} gl{_ES,}.po
+%{__mv} he{_IL,}.po
+%{__mv} hu{_HU,}.po
+%{__mv} id{_ID,}.po
+%{__mv} ja{_JP,}.po
+%{__mv} km{_KH,}.po
+%{__mv} ko{_KR,}.po
+%{__mv} lt{_LT,}.po
+%{__mv} lv{_LV,}.po
+%{__mv} mk{_MK,}.po
+%{__mv} nb{_NO,}.po
+%{__mv} nn{_NO,}.po
+%{__mv} pl{_PL,}.po
+%{__mv} pt{_PT,}.po
+%{__mv} ro{_RO,}.po
+%{__mv} sk{_SK,}.po
+%{__mv} sl{_SI,}.po
+%{__mv} th{_TH,}.po
+%{__mv} uk{_UA,}.po
+%{__mv} vi{_VN,}.po
 # Temporary - FIXME:
-rm -f ca@valencia.po
+%{__rm} ca@valencia.po
 
 %build
 %{__libtoolize}
@@ -101,8 +101,10 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 # Temporary - FIXME:
-rm -rf \
-	$RPM_BUILD_ROOT%{_localedir}/{ca_ES@valencia,co,kab,lo_LA}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{ca_ES@valencia,co,kab,lo_LA}
+
+# Remove oversized icons
+%{__rm} -r $RPM_BUILD_ROOT%{_iconsdir}/hicolor/480x480
 
 %find_lang filezilla
 
