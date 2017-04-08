@@ -80,8 +80,6 @@ cd locales
 %{__mv} th{_TH,}.po
 %{__mv} uk{_UA,}.po
 %{__mv} vi{_VN,}.po
-# Temporary - FIXME:
-%{__rm} ca@valencia.po
 
 %build
 %{__libtoolize}
