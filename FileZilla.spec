@@ -1,7 +1,3 @@
-# TODO
-# - /usr/share/locale/ca_ES@valencia is needed by FileZilla-3.0.5.2-1.i686
-#   (there is probably ca_ES@valencia locale in Debian glibc - merge it)
-#   Temporary removed locale...
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -10,33 +6,40 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.23.0.2
-Release:	3
+Version:	3.25.1
+Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://downloads.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
-# Source0-md5:	5f52629d11a16ed2d547a4b200d3448c
+# Source0-md5:	4866b5cbcbacd64cca036f947be56895
 Patch0:		%{name}-desktop.patch
 URL:		http://filezilla-project.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	cppunit-devel
-BuildRequires:	dbus-devel
-BuildRequires:	gettext-tools
-BuildRequires:	gnutls-devel >= 3.4.0
+BuildRequires:	autoconf >= 2.50
+BuildRequires:	automake >= 1.6
+BuildRequires:	cppunit-devel >= 1.10.2
+BuildRequires:	dbus-devel >= 1.2
+BuildRequires:	gettext-tools >= 0.11.0
+BuildRequires:	gnutls-devel >= 3.4.15
 BuildRequires:	gtk+2-devel
-BuildRequires:	libfilezilla-devel >= 0.9.0
+BuildRequires:	libfilezilla-devel >= 0.9.1
 BuildRequires:	libidn-devel
-BuildRequires:	libtool >= 2:1.5
+# -std=c++14
+BuildRequires:	libstdc++-devel >= 6:5
+BuildRequires:	libtool >= 2:2
 BuildRequires:	nettle-devel >= 3.1
 BuildRequires:	pkgconfig
 BuildRequires:	pugixml-devel >= 1.6-2
-BuildRequires:	systemd-devel
-BuildRequires:	wxGTK2-unicode-devel >= 3.0.1
-BuildRequires:	wxWidgets-devel >= 3.0.1
-BuildRequires:	wxWidgets-utils >= 3.0.1
+BuildRequires:	sqlite3-devel >= 3.7
+BuildRequires:	wxGTK2-unicode-devel >= 3.0.2
+BuildRequires:	wxWidgets-devel >= 3.0.2
+BuildRequires:	wxWidgets-utils >= 3.0.2
 BuildRequires:	xdg-utils
-Requires:	wxWidgets >= 3.0.1
+Requires:	dbus-libs >= 1.2
+Requires:	gnutls-libs >= 3.4.15
+Requires:	libfilezilla >= 0.9.1
+Requires:	nettle >= 3.1
+Requires:	pugixml >= 1.6-2
+Requires:	wxGTK2-unicode >= 3.0.2
 Provides:	filezilla
 Obsoletes:	filezilla
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -55,9 +58,8 @@ opcjami oraz intuicyjnym interfejsem.
 
 cd locales
 %{__mv} bg{_BG,}.po
+%{__mv} ca{_ES,}@valencia.po
 %{__mv} cs{_CZ,}.po
-#%{__mv} da{_DK,}.po
-#%{__mv} et{_EE,}.po
 %{__mv} fa{_IR,}.po
 %{__mv} fi{_FI,}.po
 %{__mv} gl{_ES,}.po
@@ -67,6 +69,7 @@ cd locales
 %{__mv} ja{_JP,}.po
 %{__mv} km{_KH,}.po
 %{__mv} ko{_KR,}.po
+%{__mv} lo{_LA,}.po
 %{__mv} lt{_LT,}.po
 %{__mv} lv{_LV,}.po
 %{__mv} mk{_MK,}.po
@@ -88,6 +91,7 @@ cd locales
 %{__autoheader}
 %{__automake}
 %configure \
+	xdgopen=/usr/bin/xdg-open \
 	--with-wx-config=wx-gtk2-unicode-config \
 	--with-tinyxml=builtin
 %{__make}
@@ -98,8 +102,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# Temporary - FIXME:
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{ca_ES@valencia,co,kab,lo_LA}
+# not supported by glibc (as of 2.25)
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{co,kab}
 
 # Remove oversized icons
 %{__rm} -r $RPM_BUILD_ROOT%{_iconsdir}/hicolor/480x480
@@ -111,7 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f filezilla.lang
 %defattr(644,root,root,755)
-%doc AUTHORS NEWS README
+%doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/filezilla
 %attr(755,root,root) %{_bindir}/fzsftp
 %attr(755,root,root) %{_bindir}/fzputtygen
@@ -206,9 +210,11 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/filezilla/resources/default/480x480
 %{_datadir}/filezilla/resources/default/480x480/*.png
 %{_datadir}/filezilla/resources/default/theme.xml
-%{_iconsdir}/hicolor/*/apps/filezilla.png
+%{_iconsdir}/hicolor/*x*/apps/filezilla.png
 %{_iconsdir}/hicolor/scalable/apps/filezilla.svg
-%{_desktopdir}/*.desktop
-%{_pixmapsdir}/*.png
-%{_mandir}/man1/*.1*
-%{_mandir}/man5/*.5*
+%{_desktopdir}/filezilla.desktop
+%{_pixmapsdir}/filezilla.png
+%{_mandir}/man1/filezilla.1*
+%{_mandir}/man1/fzputtygen.1*
+%{_mandir}/man1/fzsftp.1*
+%{_mandir}/man5/fzdefaults.xml.5*
