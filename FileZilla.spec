@@ -11,7 +11,7 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://downloads.sourceforge.net/filezilla/%{name}_%{version}_src.tar.bz2
-# Source0-md5:	0eee1369904e9b0b60500a1068ca5a85
+# Source0-md5:	cb530d737c8f2d1023797cf0587b4e05
 Patch0:		%{name}-desktop.patch
 URL:		http://filezilla-project.org/
 BuildRequires:	autoconf >= 2.50
