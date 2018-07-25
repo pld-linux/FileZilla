@@ -1,4 +1,4 @@
-%define		libfilezillaver	0.12.2
+%define		libfilezillaver	0.13.0
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -7,12 +7,12 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.33.0
+Version:	3.35.1
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	https://dl1.cdn.filezilla-project.org/client/%{name}_%{version}_src.tar.bz2
-# Source0-md5:	6180f5ab8eff884643a875bbd4e17273
+# Source0-md5:	6595bef0872e230eba2aa3a449d03c92
 Patch0:		%{name}-desktop.patch
 URL:		http://filezilla-project.org/
 BuildRequires:	autoconf >= 2.50
@@ -126,7 +126,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/filezilla/docs
 %{_datadir}/filezilla/docs/*
 %dir %{_datadir}/filezilla/resources
-%{_datadir}/filezilla/resources/*.png
 %{_datadir}/filezilla/resources/*.wav
 %{_datadir}/filezilla/resources/*.xml
 %dir %{_datadir}/filezilla/resources/xrc
