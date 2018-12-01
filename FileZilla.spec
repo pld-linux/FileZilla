@@ -1,4 +1,4 @@
-%define		libfilezillaver	0.14.0
+%define		libfilezillaver	0.15.1
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -7,17 +7,17 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.37.4
+Version:	3.39.0
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	https://download.filezilla-project.org/client/%{name}_%{version}_src.tar.bz2
-# Source0-md5:	0c8d36d6f8d3445c28583339eaea2618
+# Source0-md5:	9e819e21fafe9ff16bfc1c07b4c09153
 Patch0:		%{name}-desktop.patch
 URL:		http://filezilla-project.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1.6
-BuildRequires:	cppunit-devel >= 1.10.2
+BuildRequires:	cppunit-devel >= 1.13.0
 BuildRequires:	dbus-devel >= 1.2
 BuildRequires:	gettext-tools >= 0.11.0
 BuildRequires:	gnutls-devel >= 3.4.15
@@ -31,16 +31,16 @@ BuildRequires:	nettle-devel >= 3.1
 BuildRequires:	pkgconfig
 BuildRequires:	pugixml-devel >= 1.6-2
 BuildRequires:	sqlite3-devel >= 3.7
-BuildRequires:	wxGTK2-unicode-devel >= 3.0.3
-BuildRequires:	wxWidgets-devel >= 3.0.3
-BuildRequires:	wxWidgets-utils >= 3.0.3
+BuildRequires:	wxGTK2-unicode-devel >= 3.0.4
+BuildRequires:	wxWidgets-devel >= 3.0.4
+BuildRequires:	wxWidgets-utils >= 3.0.4
 BuildRequires:	xdg-utils
 Requires:	dbus-libs >= 1.2
 Requires:	gnutls-libs >= 3.4.15
 Requires:	libfilezilla >= %{libfilezillaver}
 Requires:	nettle >= 3.1
 Requires:	pugixml >= 1.6-2
-Requires:	wxGTK2-unicode >= 3.0.3
+Requires:	wxGTK2-unicode >= 3.0.4
 Provides:	filezilla
 Obsoletes:	filezilla
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
