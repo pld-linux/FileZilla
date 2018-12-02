@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_with	storj	# support for Storj decentralized cloud storage provider
+
 %define		libfilezillaver	0.15.1
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
@@ -26,6 +30,7 @@ BuildRequires:	libfilezilla-devel >= %{libfilezillaver}
 BuildRequires:	libidn-devel
 # -std=c++14
 BuildRequires:	libstdc++-devel >= 6:5
+%{?with_storj:BuildRequires:	libstorj-devel >= 1.0}
 BuildRequires:	libtool >= 2:2
 BuildRequires:	nettle-devel >= 3.1
 BuildRequires:	pkgconfig
@@ -95,6 +100,7 @@ cd locales
 	xdgopen=/usr/bin/xdg-open \
 	--disable-precomp \
 	--with-wx-config=wx-gtk2-unicode-config \
+	%{?with_storj:--enable-storj} \
 	--with-tinyxml=builtin
 %{__make}
 
@@ -119,8 +125,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/filezilla
-%attr(755,root,root) %{_bindir}/fzsftp
 %attr(755,root,root) %{_bindir}/fzputtygen
+%attr(755,root,root) %{_bindir}/fzsftp
+%if %{with storj}
+%attr(755,root,root) %{_bindir}/fzstorj
+%endif
 %{_datadir}/appdata/filezilla.appdata.xml
 %dir %{_datadir}/filezilla
 %dir %{_datadir}/filezilla/docs
