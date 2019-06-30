@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_with	storj	# support for Storj decentralized cloud storage provider
 
-%define		libfilezillaver	0.17.0
+%define		libfilezillaver	0.17.1
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -13,7 +13,7 @@ Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
 Version:	3.43.0
 Release:	1
-License:	GPL
+License:	GPL v2+
 Group:		X11/Applications/Networking
 Source0:	https://download.filezilla-project.org/client/%{name}_%{version}_src.tar.bz2
 # Source0-md5:	44d7279e95cdd9c14b14218ac30f00e3
@@ -24,12 +24,11 @@ BuildRequires:	automake >= 1.6
 BuildRequires:	cppunit-devel >= 1.13.0
 BuildRequires:	dbus-devel >= 1.2
 BuildRequires:	gettext-tools >= 0.11.0
-BuildRequires:	gnutls-devel >= 3.4.15
-BuildRequires:	gtk+2-devel
+BuildRequires:	gtk+2-devel >= 1:2.0
 BuildRequires:	libfilezilla-devel >= %{libfilezillaver}
 BuildRequires:	libidn-devel
-# -std=c++14
-BuildRequires:	libstdc++-devel >= 6:5
+# -std=c++17
+BuildRequires:	libstdc++-devel >= 6:7
 %{?with_storj:BuildRequires:	libstorj-devel >= 1.0}
 BuildRequires:	libtool >= 2:2
 BuildRequires:	nettle-devel >= 3.1
@@ -41,7 +40,6 @@ BuildRequires:	wxWidgets-devel >= 3.0.4
 BuildRequires:	wxWidgets-utils >= 3.0.4
 BuildRequires:	xdg-utils
 Requires:	dbus-libs >= 1.2
-Requires:	gnutls-libs >= 3.4.15
 Requires:	libfilezilla >= %{libfilezillaver}
 Requires:	nettle >= 3.1
 Requires:	pugixml >= 1.6-2
