@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_with	storj	# support for Storj decentralized cloud storage provider
 
-%define		libfilezillaver	0.18.2
+%define		libfilezillaver	0.21.0
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -11,14 +11,14 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.45.1
+Version:	3.48.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Networking
 Source0:	https://download.filezilla-project.org/client/%{name}_%{version}_src.tar.bz2
-# Source0-md5:	32b1ab28bcc0c17ed732bd3892258cfe
+# Source0-md5:	3abc4b9f308587847f10070fbf860517
 Patch0:		%{name}-desktop.patch
-URL:		http://filezilla-project.org/
+URL:		https://filezilla-project.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1.6
 BuildRequires:	cppunit-devel >= 1.13.0
