@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_with	storj	# support for Storj decentralized cloud storage provider
 
-%define		libfilezillaver	0.21.0
+%define		libfilezilla_ver	0.25.0
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -11,12 +11,12 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.48.0
+Version:	3.51.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Networking
 Source0:	https://download.filezilla-project.org/client/%{name}_%{version}_src.tar.bz2
-# Source0-md5:	3abc4b9f308587847f10070fbf860517
+# Source0-md5:	d8e9abde7a0b0a64d6896b6e6732ef96
 Patch0:		%{name}-desktop.patch
 URL:		https://filezilla-project.org/
 BuildRequires:	autoconf >= 2.50
@@ -25,22 +25,22 @@ BuildRequires:	cppunit-devel >= 1.13.0
 BuildRequires:	dbus-devel >= 1.2
 BuildRequires:	gettext-tools >= 0.11.0
 BuildRequires:	gtk+2-devel >= 1:2.0
-BuildRequires:	libfilezilla-devel >= %{libfilezillaver}
+BuildRequires:	libfilezilla-devel >= %{libfilezilla_ver}
 BuildRequires:	libidn-devel
 # -std=c++17
 BuildRequires:	libstdc++-devel >= 6:7
-%{?with_storj:BuildRequires:	libstorj-devel >= 1.0}
 BuildRequires:	libtool >= 2:2
 BuildRequires:	nettle-devel >= 3.1
 BuildRequires:	pkgconfig
 BuildRequires:	pugixml-devel >= 1.6-2
 BuildRequires:	sqlite3-devel >= 3.7
+%{?with_storj:BuildRequires:	storj-uplink-c-devel}
 BuildRequires:	wxGTK2-unicode-devel >= 3.0.4
 BuildRequires:	wxWidgets-devel >= 3.0.4
 BuildRequires:	wxWidgets-utils >= 3.0.4
 BuildRequires:	xdg-utils
 Requires:	dbus-libs >= 1.2
-Requires:	libfilezilla >= %{libfilezillaver}
+Requires:	libfilezilla >= %{libfilezilla_ver}
 Requires:	nettle >= 3.1
 Requires:	pugixml >= 1.6-2
 Requires:	wxGTK2-unicode >= 3.0.4
@@ -108,8 +108,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# not supported by glibc (as of 2.25)
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{co,kab}
+# API not exported
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libfzclient-private.{la,so}
+
+# not supported by glibc (as of 2.32)
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/co
 
 # Remove oversized icons
 %{__rm} -r $RPM_BUILD_ROOT%{_iconsdir}/hicolor/480x480
@@ -118,6 +121,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files -f filezilla.lang
 %defattr(644,root,root,755)
@@ -128,6 +134,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with storj}
 %attr(755,root,root) %{_bindir}/fzstorj
 %endif
+%attr(755,root,root) %{_libdir}/libfzclient-private-%{version}.so
 %{_datadir}/appdata/filezilla.appdata.xml
 %dir %{_datadir}/filezilla
 %dir %{_datadir}/filezilla/docs
