@@ -12,7 +12,7 @@ Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
 Version:	3.52.2
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications/Networking
 Source0:	https://download.filezilla-project.org/client/%{name}_%{version}_src.tar.bz2

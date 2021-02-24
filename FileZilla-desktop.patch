@@ -1,10 +1,15 @@
---- ./data/filezilla.desktop.org	2007-10-17 20:22:29.000000000 +0200
-+++ ./data/filezilla.desktop	2007-10-21 20:52:03.524181129 +0200
-@@ -3,6 +3,7 @@ Name=FileZilla
+--- filezilla-3.52.2/data/filezilla.desktop~	2020-06-04 10:18:01.000000000 +0000
++++ filezilla-3.52.2/data/filezilla.desktop	2021-02-24 21:35:50.668772857 +0000
+@@ -4,10 +4,12 @@
+ GenericName[da]=FTP-klient
+ GenericName[de]=FTP-Client
+ GenericName[fr]=Client FTP
++GenericName[pl]=Klient FTP
  Comment=Download and upload files via FTP, FTPS and SFTP
+ Comment[da]=Download og upload filer via FTP, FTPS og SFTP
  Comment[de]=Dateien über FTP, FTPS und SFTP übertragen
  Comment[fr]=Transférer des fichiers via FTP, FTPS et SFTP
-+Comment[pl]=FileZilla - klient ftp, sftp oraz ftps
++Comment[pl]=Pobieraj i wysyłaj pliki przez FTP, FTPS i SFTP
  Exec=filezilla
  Terminal=false
  Icon=filezilla
