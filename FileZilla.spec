@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_with	storj	# support for Storj decentralized cloud storage provider
 
-%define		libfilezilla_ver	0.25.0
+%define		libfilezilla_ver	0.27.0
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -11,12 +11,12 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.52.2
+Version:	3.53.0
 Release:	2
 License:	GPL v2+
 Group:		X11/Applications/Networking
 Source0:	https://download.filezilla-project.org/client/%{name}_%{version}_src.tar.bz2
-# Source0-md5:	bbeff02de597335141bd4674edf2d617
+# Source0-md5:	bdac3a687269b925c3e7aa279b90bab1
 Patch0:		%{name}-desktop.patch
 URL:		https://filezilla-project.org/
 BuildRequires:	autoconf >= 2.50
@@ -110,6 +110,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # API not exported
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libfzclient-private.{la,so}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libfzclient-commonui-private.{la,so}
 
 # not supported by glibc (as of 2.32)
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/co
@@ -134,6 +135,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with storj}
 %attr(755,root,root) %{_bindir}/fzstorj
 %endif
+%attr(755,root,root) %{_libdir}/libfzclient-commonui-private-%{version}.so
 %attr(755,root,root) %{_libdir}/libfzclient-private-%{version}.so
 %{_datadir}/appdata/filezilla.appdata.xml
 %dir %{_datadir}/filezilla
