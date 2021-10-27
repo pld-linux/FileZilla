@@ -1,3 +1,4 @@
+# TODO: wxGTK3/gtk+3 as bcond/default?
 #
 # Conditional build:
 %bcond_with	storj	# support for Storj decentralized cloud storage provider
@@ -45,7 +46,7 @@ Requires:	nettle >= 3.1
 Requires:	pugixml >= 1.6-2
 Requires:	wxGTK2-unicode >= 3.0.4
 Provides:	filezilla
-Obsoletes:	filezilla
+Obsoletes:	filezilla < 3.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
