@@ -1,9 +1,6 @@
-# TODO: wxGTK3/gtk+3 as bcond/default?
-#
-# Conditional build:
 %bcond_with	storj	# support for Storj decentralized cloud storage provider
 
-%define		libfilezilla_ver	0.34.2
+%define		libfilezilla_ver	0.35.0
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -12,12 +9,12 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.56.2
+Version:	3.57.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Networking
 Source0:	https://download.filezilla-project.org/client/%{name}_%{version}_src.tar.bz2
-# Source0-md5:	1d2d2604ffe1f198271884dd1c788898
+# Source0-md5:	c6844958dc38d05981d602df9c9309c4
 Patch0:		%{name}-desktop.patch
 URL:		https://filezilla-project.org/
 BuildRequires:	autoconf >= 2.50
@@ -25,7 +22,7 @@ BuildRequires:	automake >= 1.6
 BuildRequires:	cppunit-devel >= 1.13.0
 BuildRequires:	dbus-devel >= 1.2
 BuildRequires:	gettext-tools >= 0.11.0
-BuildRequires:	gtk+2-devel >= 1:2.0
+BuildRequires:	gtk+3-devel
 BuildRequires:	libfilezilla-devel >= %{libfilezilla_ver}
 BuildRequires:	libidn-devel
 # -std=c++17
@@ -33,18 +30,18 @@ BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	libtool >= 2:2
 BuildRequires:	nettle-devel >= 3.1
 BuildRequires:	pkgconfig
-BuildRequires:	pugixml-devel >= 1.6-2
+BuildRequires:	pugixml-devel >= 1.9
 BuildRequires:	sqlite3-devel >= 3.7
 %{?with_storj:BuildRequires:	storj-uplink-c-devel}
-BuildRequires:	wxGTK2-unicode-devel >= 3.0.4
+BuildRequires:	wxGTK3-unicode-devel >= 3.0.4
 BuildRequires:	wxWidgets-devel >= 3.0.4
 BuildRequires:	wxWidgets-utils >= 3.0.4
 BuildRequires:	xdg-utils
 Requires:	dbus-libs >= 1.2
 Requires:	libfilezilla >= %{libfilezilla_ver}
 Requires:	nettle >= 3.1
-Requires:	pugixml >= 1.6-2
-Requires:	wxGTK2-unicode >= 3.0.4
+Requires:	pugixml >= 1.9
+Requires:	wxGTK3-unicode >= 3.0.4
 Provides:	filezilla
 Obsoletes:	filezilla < 3.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -98,7 +95,7 @@ cd locales
 %configure \
 	xdgopen=/usr/bin/xdg-open \
 	--disable-precomp \
-	--with-wx-config=wx-gtk2-unicode-config \
+	--with-wx-config=wx-gtk3-unicode-config \
 	%{?with_storj:--enable-storj} \
 	--with-tinyxml=builtin
 %{__make}
