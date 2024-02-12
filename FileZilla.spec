@@ -1,6 +1,6 @@
 %bcond_with	storj	# support for Storj decentralized cloud storage provider
 
-%define		libfilezilla_ver	0.45.0
+%define		libfilezilla_ver	0.46.0
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -9,12 +9,12 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.66.4
+Version:	3.66.5
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Networking
 Source0:	https://download.filezilla-project.org/client/%{name}_%{version}_src.tar.xz
-# Source0-md5:	dad3986f7ed6a53213dee1f30289a27a
+# Source0-md5:	7e063566849d2a83fc943b69a5aa219d
 Patch0:		%{name}-desktop.patch
 Patch1:		disable-avx-on-i686.patch
 URL:		https://filezilla-project.org/
