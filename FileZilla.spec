@@ -58,8 +58,8 @@ opcjami oraz intuicyjnym interfejsem.
 
 %prep
 %setup -q -n filezilla-%{version}
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 cd locales
 %{__mv} bg{_BG,}.po
