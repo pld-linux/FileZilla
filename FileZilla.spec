@@ -1,6 +1,6 @@
 %bcond_with	storj	# support for Storj decentralized cloud storage provider
 
-%define		libfilezilla_ver	0.47.0
+%define		libfilezilla_ver	0.52.0
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -9,12 +9,13 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.67.0
+Version:	3.69.5
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Networking
-Source0:	https://download.filezilla-project.org/client/%{name}_%{version}_src.tar.xz
-# Source0-md5:	ddcf03519e2e55ada0bb77c2a6a73fba
+#Source0-dl:	https://filezilla-project.org/download.php?type=client
+Source0:	%{name}_%{version}_src.tar.xz
+# Source0-md5:	3e82b86f513709e33ed14183442fb93b
 Patch0:		%{name}-desktop.patch
 Patch1:		disable-avx-on-i686.patch
 URL:		https://filezilla-project.org/
@@ -136,8 +137,8 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with storj}
 %attr(755,root,root) %{_bindir}/fzstorj
 %endif
-%attr(755,root,root) %{_libdir}/libfzclient-commonui-private-%{version}.so
-%attr(755,root,root) %{_libdir}/libfzclient-private-%{version}.so
+%{_libdir}/libfzclient-commonui-private-%{version}.so
+%{_libdir}/libfzclient-private-%{version}.so
 %{_datadir}/appdata/filezilla.appdata.xml
 %dir %{_datadir}/filezilla
 %dir %{_datadir}/filezilla/docs
