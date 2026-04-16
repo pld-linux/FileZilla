@@ -1,6 +1,6 @@
 %bcond_with	storj	# support for Storj decentralized cloud storage provider
 
-%define		libfilezilla_ver	0.55.3
+%define		libfilezilla_ver	0.55.4
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -9,13 +9,13 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.70.3
+Version:	3.70.4
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Networking
 #Source0-dl:	https://filezilla-project.org/download.php?type=client
 Source0:	%{name}_%{version}_src.tar.xz
-# Source0-md5:	52df939e5a706296d6936b80558aebf6
+# Source0-md5:	3b5200aa507c103f4c06b03e63aff4af
 Patch0:		%{name}-desktop.patch
 URL:		https://filezilla-project.org/
 BuildRequires:	autoconf >= 2.50
@@ -23,7 +23,7 @@ BuildRequires:	automake >= 1.6
 BuildRequires:	boost-devel >= 1.76
 BuildRequires:	cppunit-devel >= 1.13.0
 BuildRequires:	dbus-devel >= 1.2
-BuildRequires:	fzssh-devel >= 1.1.10
+BuildRequires:	fzssh-devel >= 1.2.0
 BuildRequires:	gettext-tools >= 0.11.0
 BuildRequires:	gtk+3-devel
 BuildRequires:	libfilezilla-devel >= %{libfilezilla_ver}
