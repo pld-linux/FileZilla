@@ -17,7 +17,6 @@ Group:		X11/Applications/Networking
 Source0:	%{name}_%{version}_src.tar.xz
 # Source0-md5:	52df939e5a706296d6936b80558aebf6
 Patch0:		%{name}-desktop.patch
-Patch1:		disable-avx-on-i686.patch
 URL:		https://filezilla-project.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1.6
@@ -61,7 +60,6 @@ opcjami oraz intuicyjnym interfejsem.
 %prep
 %setup -q -n filezilla-%{version}
 %patch -P0 -p1
-#patch -P1 -p1
 
 cd locales
 %{__mv} bg{_BG,}.po
