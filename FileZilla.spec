@@ -1,6 +1,6 @@
 %bcond_with	storj	# support for Storj decentralized cloud storage provider
 
-%define		libfilezilla_ver	0.52.0
+%define		libfilezilla_ver	0.55.3
 Summary:	FTP client for X Window
 Summary(es.UTF-8):	Cliente FTP para el X Window
 Summary(ja.UTF-8):	X Window System 用マルチスレッド FTP クライアント
@@ -9,13 +9,13 @@ Summary(pt_BR.UTF-8):	Cliente FTP para o X Window
 Summary(ru.UTF-8):	FTP клиент для X Window
 Summary(uk.UTF-8):	FTP клієнт для X Window
 Name:		FileZilla
-Version:	3.69.5
+Version:	3.70.3
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Networking
 #Source0-dl:	https://filezilla-project.org/download.php?type=client
 Source0:	%{name}_%{version}_src.tar.xz
-# Source0-md5:	3e82b86f513709e33ed14183442fb93b
+# Source0-md5:	52df939e5a706296d6936b80558aebf6
 Patch0:		%{name}-desktop.patch
 Patch1:		disable-avx-on-i686.patch
 URL:		https://filezilla-project.org/
@@ -24,6 +24,7 @@ BuildRequires:	automake >= 1.6
 BuildRequires:	boost-devel >= 1.76
 BuildRequires:	cppunit-devel >= 1.13.0
 BuildRequires:	dbus-devel >= 1.2
+BuildRequires:	fzssh-devel >= 1.1.10
 BuildRequires:	gettext-tools >= 0.11.0
 BuildRequires:	gtk+3-devel
 BuildRequires:	libfilezilla-devel >= %{libfilezilla_ver}
@@ -60,7 +61,7 @@ opcjami oraz intuicyjnym interfejsem.
 %prep
 %setup -q -n filezilla-%{version}
 %patch -P0 -p1
-%patch -P1 -p1
+#patch -P1 -p1
 
 cd locales
 %{__mv} bg{_BG,}.po
@@ -132,8 +133,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/filezilla
-%attr(755,root,root) %{_bindir}/fzputtygen
-%attr(755,root,root) %{_bindir}/fzsftp
 %if %{with storj}
 %attr(755,root,root) %{_bindir}/fzstorj
 %endif
@@ -232,6 +231,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/filezilla.desktop
 %{_pixmapsdir}/filezilla.png
 %{_mandir}/man1/filezilla.1*
-%{_mandir}/man1/fzputtygen.1*
-%{_mandir}/man1/fzsftp.1*
 %{_mandir}/man5/fzdefaults.xml.5*
